@@ -418,16 +418,10 @@ def _wrap(draw, text: str, font, max_w: int) -> list[str]:
 def make_landscape(name: str, photo, backdrop):
     from PIL import Image, ImageDraw, ImageFilter
     W, H = 1920, 1080
-    if backdrop is not None:
-        bg = _cover(backdrop.convert("RGB"), W, H).filter(ImageFilter.GaussianBlur(18))
-        bg = Image.blend(bg, Image.new("RGB", (W, H), (0, 0, 0)), 0.55)
-    else:
-        bg = Image.new("RGB", (W, H))
-        d = ImageDraw.Draw(bg)
-        for y in range(H):
-            v = int(15 + 35 * y / H)
-            d.line([(0, y), (W, y)], fill=(v, v, v + 12))
-    canvas = bg.convert("RGBA")
+    # Fond noir vignette (le backdrop n'est plus utilise) : centre gris tres sombre, bords noirs.
+    fade = Image.radial_gradient("L").resize((W, H), Image.BICUBIC)  # 0 au centre, 255 aux bords
+    bg = Image.eval(fade, lambda v: max(0, 46 - v * 46 // 200))
+    canvas = Image.merge("RGB", (bg, bg, bg)).convert("RGBA")
 
     ph_w, ph_h = 560, 840
     if photo is not None:
