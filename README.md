@@ -98,6 +98,19 @@ Dans `config.json`, ajoutez un second bloc dans la liste `actors` (séparé par 
 
 Les champs omis prennent leurs valeurs par défaut (`max_cast_order` 15, `min_vote_count` 20, documentaires exclus, films à venir inclus). Créez d'abord une nouvelle liste statique MDBList pour chaque acteur (étape 1), puis répétez les étapes 6 et 7.
 
+## Listes TMDB (rôles principaux)
+
+En plus de MDBList, le script maintient **une liste TMDB publique par acteur**, contenant uniquement les films où l'acteur a un rôle principal (par défaut : parmi les 4 premiers du générique, `order` ≤ 3). Ces listes s'importent comme catalogues dans AIOMetadata.
+
+1. Récupérez le **« API Read Access Token »** sur https://www.themoviedb.org/settings/api et ajoutez-le dans `.env` : `TMDB_READ_TOKEN=...`
+2. Lancez `python sync.py --tmdb-login` : le script affiche une adresse. Ouvrez-la dans le navigateur et approuvez l'accès.
+3. Lancez `python sync.py --tmdb-login-finish` : `TMDB_USER_TOKEN` et `TMDB_ACCOUNT_ID` sont écrits dans `.env` (sans être affichés).
+4. Ajoutez les trois valeurs `TMDB_READ_TOKEN`, `TMDB_USER_TOKEN` et `TMDB_ACCOUNT_ID` dans les secrets GitHub (étape 3).
+
+Réglages dans `config.json`, clé `tmdb_lists` : `enabled` (`false` pour désactiver), `max_cast_order` (seuil d'ordre au générique, 3 par défaut), `name_template` et `description_template` (`{name}` = nom de l'acteur). Pour exclure un acteur : `"tmdb_list": false` dans son bloc. Les filtres de l'acteur (`min_vote_count`, genres, etc.) s'appliquent aussi, sauf `max_cast_order` remplacé par la valeur de `tmdb_lists`. Sans jetons, cette partie est simplement ignorée.
+
+Le fichier `output/tmdb_lists.json` donne l'adresse de chaque liste (`https://www.themoviedb.org/list/<id>`) : importez-les dans AIOMetadata via l'intégration **TMDB Lists**.
+
 ## Dépannage
 
 - **« TMDB_API_KEY est absente »** : le secret n'existe pas ou son nom est mal orthographié (étape 3).

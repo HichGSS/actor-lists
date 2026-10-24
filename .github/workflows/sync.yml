@@ -32,6 +32,9 @@ jobs:
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           MDBLIST_API_KEY: ${{ secrets.MDBLIST_API_KEY }}
+          TMDB_READ_TOKEN: ${{ secrets.TMDB_READ_TOKEN }}
+          TMDB_USER_TOKEN: ${{ secrets.TMDB_USER_TOKEN }}
+          TMDB_ACCOUNT_ID: ${{ secrets.TMDB_ACCOUNT_ID }}
         run: python sync.py
 
       - name: Commit and push changes

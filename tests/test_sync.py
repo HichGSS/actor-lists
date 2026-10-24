@@ -337,5 +337,134 @@ class AddonTests(unittest.TestCase):
                           d["overview"], d["year"]), ("tt7", "2020-02-02", "/p.jpg", "/b.jpg", "Resume", "2020"))
 
 
+class TmdbListTests(unittest.TestCase):
+    def ctx(self, lists=None):
+        return {"settings": dict(sync.TMDB_LISTS_DEFAULTS), "token": "tok", "account": "acc",
+                "lists": lists, "output": {}}
+
+    def test_lookup_across_pages_cached(self):
+        pages = [{"total_pages": 2, "results": [{"id": 1, "name": "A"}]},
+                 {"total_pages": 2, "results": [{"id": 2, "name": "B"}]}]
+        ctx = self.ctx()
+        with mock.patch.object(sync, "http", side_effect=[fake_resp(payload=p) for p in pages]) as h:
+            lists = sync.tmdb_account_lists(ctx)
+            sync.tmdb_account_lists(ctx)
+        self.assertEqual([l["id"] for l in lists], [1, 2])
+        self.assertEqual(h.call_count, 2)
+        self.assertEqual(h.call_args_list[1].kwargs["params"], {"page": 2})
+
+    def test_items_movies_only(self):
+        pages = [{"total_pages": 2, "results": [{"id": 1, "media_type": "movie"}]},
+                 {"total_pages": 2, "results": [{"id": 2, "media_type": "tv"},
+                                                {"id": 3, "media_type": "movie"}]}]
+        with mock.patch.object(sync, "http", side_effect=[fake_resp(payload=p) for p in pages]):
+            self.assertEqual(sync.tmdb_list_items(self.ctx(), 9), {1, 3})
+
+    def test_creates_missing_list_and_chunks(self):
+        cast = [movie(i, order=0) for i in range(1, 121)] + [movie(500, order=9)]
+        ctx = self.ctx(lists=[])
+        with tempfile.TemporaryDirectory() as d, \
+                mock.patch.object(sync, "OUTPUT_DIR", Path(d)), \
+                mock.patch.object(sync, "tmdb4_request", side_effect=lambda *a, **k: {"id": 77}) as rq:
+            sync.sync_tmdb_list("Bob", {}, cast, ctx, False)
+            sync.write_tmdb_lists_output(ctx)
+            out = json.loads((Path(d) / "tmdb_lists.json").read_text(encoding="utf-8"))
+        calls = [(c.args[0], c.args[1]) for c in rq.call_args_list]
+        self.assertEqual(calls[0], ("POST", "/list"))
+        self.assertTrue(rq.call_args_list[0].kwargs["body"]["public"])
+        self.assertEqual(calls[1], ("PUT", "/list/77"))
+        posts = [c for c in rq.call_args_list if c.args[1] == "/list/77/items"]
+        self.assertEqual([len(c.kwargs["body"]["items"]) for c in posts], [50, 50, 20])
+        self.assertEqual(out["Bob"], {"id": 77, "url": "https://www.themoviedb.org/list/77", "count": 120})
+
+    def test_sort_failure_is_only_a_warning(self):
+        def fake(method, path, *a, **k):
+            if method == "PUT":
+                raise sync.SyncError("boom")
+            return {"id": 5}
+        with mock.patch.object(sync, "tmdb4_request", side_effect=fake):
+            sync.sync_tmdb_list("Bob", {}, [movie(1)], self.ctx(lists=[]), False)
+
+    def test_diff_add_remove_existing_list(self):
+        ctx = self.ctx(lists=[{"id": 9, "name": "Bob"}])
+        cast = [movie(1), movie(2)]
+        with mock.patch.object(sync, "tmdb_list_items", return_value={2, 3}), \
+                mock.patch.object(sync, "tmdb4_request", return_value={}) as rq:
+            sync.sync_tmdb_list("Bob", {}, cast, ctx, False)
+        got = [(c.args[0], c.kwargs["body"]["items"]) for c in rq.call_args_list]
+        self.assertEqual(got, [("POST", [{"media_type": "movie", "media_id": 1}]),
+                               ("DELETE", [{"media_type": "movie", "media_id": 3}])])
+        self.assertEqual(ctx["output"]["Bob"]["id"], 9)
+
+    def test_dry_run_no_writes(self):
+        cast = [movie(1)]
+        with mock.patch.object(sync, "tmdb4_request") as rq:
+            sync.sync_tmdb_list("Bob", {}, cast, self.ctx(lists=[]), True)
+            rq.assert_not_called()
+        ctx = self.ctx(lists=[{"id": 9, "name": "Bob"}])
+        with mock.patch.object(sync, "tmdb_list_items", return_value={5}), \
+                mock.patch.object(sync, "tmdb4_request") as rq:
+            sync.sync_tmdb_list("Bob", {}, cast, ctx, True)
+            rq.assert_not_called()
+        self.assertEqual(ctx["output"], {})
+
+    def test_max_cast_order_override(self):
+        cast = [movie(1, order=3), movie(2, order=4)]
+        ctx = self.ctx(lists=[{"id": 9, "name": "Bob"}])
+        with mock.patch.object(sync, "tmdb_list_items", return_value=set()), \
+                mock.patch.object(sync, "tmdb4_request", return_value={}) as rq:
+            sync.sync_tmdb_list("Bob", {"max_cast_order": 15}, cast, ctx, False)
+        self.assertEqual(rq.call_args.kwargs["body"]["items"], [{"media_type": "movie", "media_id": 1}])
+
+    def test_skip_when_disabled_or_tokens_missing(self):
+        with mock.patch.dict("os.environ", {}, clear=True):
+            self.assertIsNone(sync.tmdb_lists_context({}))
+        with mock.patch.dict("os.environ", {"TMDB_USER_TOKEN": "t", "TMDB_ACCOUNT_ID": "a"}):
+            self.assertIsNone(sync.tmdb_lists_context({"tmdb_lists": {"enabled": False}}))
+            ctx = sync.tmdb_lists_context({"tmdb_lists": {"max_cast_order": 1}})
+            self.assertEqual(ctx["settings"]["max_cast_order"], 1)
+            self.assertEqual(ctx["settings"]["name_template"], "{name}")
+
+    def test_process_actor_opt_out(self):
+        args = mock.Mock(dry_run=True, no_banner=True)
+        person = {"name": "Bob", "movie_credits": {"cast": [movie(1)]}}
+        with mock.patch.object(sync, "fetch_person", return_value=person), \
+                mock.patch.object(sync, "get_imdb_id", return_value=None), \
+                mock.patch.object(sync, "save_cache"), \
+                mock.patch.dict("os.environ", {"MDBLIST_API_KEY": ""}), \
+                mock.patch.object(sync, "sync_tmdb_list") as st:
+            sync.process_actor({"name": "Bob", "tmdb_id": 1, "tmdb_list": False}, args, {}, self.ctx())
+            st.assert_not_called()
+            sync.process_actor({"name": "Bob", "tmdb_id": 1}, args, {}, self.ctx())
+            st.assert_called_once()
+
+    def test_update_env_file(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / ".env"
+            p.write_text("# note\nTMDB_API_KEY=abc\nTMDB_USER_TOKEN=old\n", encoding="utf-8")
+            sync.update_env_file(p, {"TMDB_USER_TOKEN": "new", "TMDB_ACCOUNT_ID": "42"})
+            self.assertEqual(p.read_text(encoding="utf-8").splitlines(),
+                             ["# note", "TMDB_API_KEY=abc", "TMDB_USER_TOKEN=new", "TMDB_ACCOUNT_ID=42"])
+            q = Path(d) / "missing.env"
+            sync.update_env_file(q, {"A": "1"})
+            self.assertEqual(q.read_text(encoding="utf-8"), "A=1\n")
+
+    def test_login_flow(self):
+        with tempfile.TemporaryDirectory() as d, \
+                mock.patch.dict("os.environ", {"TMDB_READ_TOKEN": "rd"}):
+            tok, env = Path(d) / ".tmdb_request_token", Path(d) / ".env"
+            env.write_text("KEEP=1\n", encoding="utf-8")
+            with mock.patch.object(sync, "tmdb4_request", return_value={"request_token": "rt1"}):
+                self.assertEqual(sync.tmdb_login(tok), 0)
+            self.assertEqual(tok.read_text(encoding="utf-8"), "rt1")
+            with mock.patch.object(sync, "tmdb4_request",
+                                   return_value={"access_token": "AT", "account_id": "ID"}) as rq:
+                self.assertEqual(sync.tmdb_login_finish(tok, env), 0)
+            self.assertEqual(rq.call_args.kwargs["body"], {"request_token": "rt1"})
+            self.assertFalse(tok.exists())
+            self.assertIn("TMDB_USER_TOKEN=AT", env.read_text(encoding="utf-8"))
+            self.assertIn("KEEP=1", env.read_text(encoding="utf-8"))
+
+
 if __name__ == "__main__":
     unittest.main()

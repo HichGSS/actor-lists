@@ -3,6 +3,7 @@
 et genere des bannieres d'acteur.
 
 Usage : python sync.py [--dry-run] [--actor "Nom"] [--no-banner]
+        python sync.py --tmdb-login | --tmdb-login-finish
 """
 from __future__ import annotations
 
@@ -28,11 +29,16 @@ BANNER_DIR = ROOT / "banners"
 OUTPUT_DIR = ROOT / "output"
 ADDON_DIR = ROOT / "docs"
 ADDON_PREFIX = "actorlists-"
+ENV_PATH = ROOT / ".env"
+REQUEST_TOKEN_PATH = ROOT / ".tmdb_request_token"
+TMDB_LISTS_OUTPUT = "tmdb_lists.json"
 
 TMDB_BASE = "https://api.themoviedb.org/3"
+TMDB4_BASE = "https://api.themoviedb.org/4"
 TMDB_IMG = "https://image.tmdb.org/t/p/original"
 MDBLIST_BASE = "https://api.mdblist.com"
 CHUNK = 100
+TMDB_LIST_CHUNK = 50
 PAGE = 1000
 
 DEFAULTS = {
@@ -344,6 +350,212 @@ def mdb_apply(list_id: int, to_add: list[dict], to_remove: list[str]) -> None:
         existing = (res.get("existing") or {}).get("movies", 0)
         nf = (res.get("not_found") or {}).get("movies", 0)
         print(f"  Ajout : {added} ajoute(s), {existing} deja present(s), {nf} introuvable(s)")
+
+
+# --------------------------------------------------------------------------
+# Listes TMDB (v4) : une liste publique par acteur, roles principaux seulement
+# --------------------------------------------------------------------------
+TMDB_LISTS_DEFAULTS = {
+    "enabled": True,
+    "max_cast_order": 3,
+    "name_template": "{name}",
+    "description_template": "Films où {name} tient un rôle principal — mise à jour automatique",
+}
+
+
+def tmdb4_request(method: str, path: str, token: str, params: dict | None = None,
+                  body: dict | None = None):
+    """Appel TMDB v4 avec jeton Bearer ; leve SyncError sur HTTP >= 400."""
+    headers = {"Authorization": f"Bearer {token}", "Accept": "application/json",
+               "Content-Type": "application/json"}
+    kwargs: dict = {"headers": headers}
+    if params:
+        kwargs["params"] = params
+    if body is not None:
+        kwargs["json"] = body
+    resp = http(method, f"{TMDB4_BASE}{path}", **kwargs)
+    if resp.status_code in (401, 403):
+        raise SyncError(f"TMDB v4 a refuse l'acces (HTTP {resp.status_code}) sur {path}. "
+                        "Verifiez les jetons TMDB.")
+    if resp.status_code >= 400:
+        raise SyncError(f"TMDB v4 {method} {path} : HTTP {resp.status_code} {resp.text[:200]}")
+    try:
+        return resp.json()
+    except ValueError:
+        return {}
+
+
+def update_env_file(path: Path, updates: dict) -> None:
+    """Remplace (ou ajoute) les lignes KEY=valeur dans un .env en conservant le reste."""
+    lines = path.read_text(encoding="utf-8-sig").splitlines() if path.exists() else []
+    pending = dict(updates)
+    out = []
+    for line in lines:
+        m = re.match(r"\s*([A-Za-z_][A-Za-z0-9_]*)\s*=", line)
+        if m and m.group(1) in pending:
+            out.append(f"{m.group(1)}={pending.pop(m.group(1))}")
+        else:
+            out.append(line)
+    for k, v in pending.items():
+        out.append(f"{k}={v}")
+    path.write_text("\n".join(out) + "\n", encoding="utf-8")
+
+
+def tmdb_login(token_path: Path = REQUEST_TOKEN_PATH) -> int:
+    read_token = os.environ.get("TMDB_READ_TOKEN", "").strip()
+    if not read_token:
+        print("Erreur : TMDB_READ_TOKEN est absent (.env ou environnement). Recuperez le "
+              "« API Read Access Token » sur https://www.themoviedb.org/settings/api.",
+              file=sys.stderr)
+        return 1
+    try:
+        data = tmdb4_request("POST", "/auth/request_token", read_token, body={})
+    except SyncError as exc:
+        print(f"Erreur : {exc}", file=sys.stderr)
+        return 1
+    rt = data.get("request_token")
+    if not rt:
+        print("Erreur : reponse TMDB sans request_token.", file=sys.stderr)
+        return 1
+    token_path.write_text(rt, encoding="utf-8")
+    print("Jeton de requete enregistre dans .tmdb_request_token.")
+    print("1. Ouvrez cette adresse dans votre navigateur, connectez-vous et cliquez sur "
+          "« Approuver » :")
+    print(f"   https://www.themoviedb.org/auth/access?request_token={rt}")
+    print("2. Ensuite, lancez : python sync.py --tmdb-login-finish")
+    return 0
+
+
+def tmdb_login_finish(token_path: Path = REQUEST_TOKEN_PATH, env_path: Path = ENV_PATH) -> int:
+    read_token = os.environ.get("TMDB_READ_TOKEN", "").strip()
+    if not read_token:
+        print("Erreur : TMDB_READ_TOKEN est absent (.env ou environnement).", file=sys.stderr)
+        return 1
+    if not token_path.exists():
+        print("Erreur : .tmdb_request_token introuvable. Lancez d'abord --tmdb-login.",
+              file=sys.stderr)
+        return 1
+    rt = token_path.read_text(encoding="utf-8").strip()
+    try:
+        data = tmdb4_request("POST", "/auth/access_token", read_token,
+                             body={"request_token": rt})
+    except SyncError as exc:
+        print(f"Erreur : {exc} (avez-vous bien approuve la demande dans le navigateur ?)",
+              file=sys.stderr)
+        return 1
+    access, account = data.get("access_token"), data.get("account_id")
+    if not access or not account:
+        print("Erreur : reponse TMDB sans access_token / account_id.", file=sys.stderr)
+        return 1
+    update_env_file(env_path, {"TMDB_USER_TOKEN": access, "TMDB_ACCOUNT_ID": account})
+    token_path.unlink()
+    print(f"Connexion reussie : TMDB_USER_TOKEN ({len(access)} caracteres) et TMDB_ACCOUNT_ID "
+          "ecrits dans .env.")
+    print("Ajoutez aussi TMDB_READ_TOKEN, TMDB_USER_TOKEN et TMDB_ACCOUNT_ID dans les secrets "
+          "GitHub.")
+    return 0
+
+
+def tmdb_lists_settings(config: dict) -> dict:
+    return {**TMDB_LISTS_DEFAULTS, **(config.get("tmdb_lists") or {})}
+
+
+def tmdb_lists_context(config: dict) -> dict | None:
+    """Contexte de run pour les listes TMDB, ou None (avec une seule note) si desactive."""
+    settings = tmdb_lists_settings(config)
+    if not settings.get("enabled"):
+        print("Listes TMDB desactivees (tmdb_lists.enabled) : ignorees.")
+        return None
+    token = os.environ.get("TMDB_USER_TOKEN", "").strip()
+    account = os.environ.get("TMDB_ACCOUNT_ID", "").strip()
+    if not token or not account:
+        print("Listes TMDB ignorees : TMDB_USER_TOKEN / TMDB_ACCOUNT_ID absents "
+              "(voir README, --tmdb-login).")
+        return None
+    return {"settings": settings, "token": token, "account": account,
+            "lists": None, "output": {}}
+
+
+def tmdb_pages(token: str, path: str):
+    """Itere sur les `results` de toutes les pages d'un endpoint v4 pagine."""
+    page, total = 1, 1
+    while page <= total:
+        data = tmdb4_request("GET", path, token, params={"page": page})
+        total = int(data.get("total_pages") or 1)
+        yield from (data.get("results") or [])
+        page += 1
+
+
+def tmdb_account_lists(ctx: dict) -> list[dict]:
+    if ctx["lists"] is None:
+        ctx["lists"] = list(tmdb_pages(ctx["token"], f"/account/{ctx['account']}/lists"))
+    return ctx["lists"]
+
+
+def tmdb_list_items(ctx: dict, list_id: int) -> set[int]:
+    return {int(i["id"]) for i in tmdb_pages(ctx["token"], f"/list/{list_id}")
+            if i.get("media_type", "movie") == "movie" and i.get("id") is not None}
+
+
+def tmdb_list_apply(ctx: dict, list_id: int, method: str, ids: list[int]) -> None:
+    for part in chunks(sorted(ids), TMDB_LIST_CHUNK):
+        tmdb4_request(method, f"/list/{list_id}/items", ctx["token"],
+                      body={"items": [{"media_type": "movie", "media_id": i} for i in part]})
+
+
+def sync_tmdb_list(name: str, actor: dict, cast: list[dict], ctx: dict, dry_run: bool) -> None:
+    """Synchronise la liste TMDB publique de l'acteur (roles principaux uniquement)."""
+    s = ctx["settings"]
+    kept = filter_cast(cast, {**actor, "max_cast_order": s["max_cast_order"]})
+    wanted = {int(m["id"]) for m in kept}
+    list_name = s["name_template"].format(name=name)
+    description = s["description_template"].format(name=name)
+    print(f"  Liste TMDB '{list_name}' : {len(wanted)} films en role principal "
+          f"(ordre <= {s['max_cast_order']}).")
+    matches = [l for l in tmdb_account_lists(ctx) if l.get("name") == list_name]
+    if matches:
+        list_id = int(matches[0]["id"])
+        current = tmdb_list_items(ctx, list_id)
+    elif dry_run:
+        print(f"  (dry-run : la liste TMDB '{list_name}' serait creee)")
+        list_id, current = None, set()
+    else:
+        data = tmdb4_request("POST", "/list", ctx["token"], body={
+            "name": list_name, "iso_639_1": "fr", "description": description, "public": True})
+        if not data.get("id"):
+            raise SyncError(f"Creation de la liste TMDB '{list_name}' : reponse sans id.")
+        list_id, current = int(data["id"]), set()
+        ctx["lists"].append({"id": list_id, "name": list_name})
+        print(f"  Liste TMDB creee : id {list_id}")
+        try:
+            tmdb4_request("PUT", f"/list/{list_id}", ctx["token"],
+                          body={"sort_by": "primary_release_date.desc"})
+        except SyncError as exc:
+            print(f"  ! tri de la liste TMDB non applique : {exc}")
+    to_add, to_remove = sorted(wanted - current), sorted(current - wanted)
+    print(f"  Liste TMDB : {len(current)} films ; a ajouter : {len(to_add)} ; "
+          f"a retirer : {len(to_remove)}")
+    if dry_run:
+        print("  (dry-run : aucune ecriture TMDB)")
+        return
+    if to_add:
+        tmdb_list_apply(ctx, list_id, "POST", to_add)
+    if to_remove:
+        tmdb_list_apply(ctx, list_id, "DELETE", to_remove)
+    ctx["output"][name] = {"id": list_id, "url": f"https://www.themoviedb.org/list/{list_id}",
+                           "count": len(wanted)}
+
+
+def write_tmdb_lists_output(ctx: dict) -> None:
+    if not ctx["output"]:
+        return
+    path = OUTPUT_DIR / TMDB_LISTS_OUTPUT
+    try:
+        merged = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        merged = {}
+    merged.update(ctx["output"])
+    write_if_changed(path, (json.dumps(merged, indent=2, ensure_ascii=False) + "\n").encode("utf-8"))
 
 
 # --------------------------------------------------------------------------
@@ -729,7 +941,7 @@ def generate_addon(config: dict, results: list[dict], out_dir: Path = ADDON_DIR)
     return written
 
 
-def process_actor(actor: dict, args, cache: dict) -> dict:
+def process_actor(actor: dict, args, cache: dict, tmdb_ctx: dict | None = None) -> dict:
     name = actor.get("name") or ""
     print(f"\n=== {name or '(sans nom)'} ===")
     tmdb_id = actor.get("tmdb_id")
@@ -777,6 +989,12 @@ def process_actor(actor: dict, args, cache: dict) -> dict:
         except SyncError as exc:
             errors.append(str(exc))
 
+    if tmdb_ctx is not None and actor.get("tmdb_list") is not False:
+        try:
+            sync_tmdb_list(name, actor, cast, tmdb_ctx, args.dry_run)
+        except SyncError as exc:
+            errors.append(f"liste TMDB : {exc}")
+
     if not args.no_banner and not args.dry_run:
         try:
             changed = generate_banners(name, slug, person.get("profile_path"), pick_backdrop(kept))
@@ -794,8 +1012,16 @@ def main(argv=None) -> int:
                     help="n'ecrit rien (ni MDBList, ni bannieres, ni output)")
     ap.add_argument("--actor", help="ne traiter que cet acteur (nom exact du config.json)")
     ap.add_argument("--no-banner", action="store_true", help="ne pas generer les bannieres")
+    ap.add_argument("--tmdb-login", action="store_true",
+                    help="demarre la connexion TMDB v4 (affiche l'adresse d'approbation)")
+    ap.add_argument("--tmdb-login-finish", action="store_true",
+                    help="termine la connexion TMDB v4 et ecrit les jetons dans .env")
     args = ap.parse_args(argv)
     load_dotenv()
+    if args.tmdb_login:
+        return tmdb_login()
+    if args.tmdb_login_finish:
+        return tmdb_login_finish()
 
     try:
         config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
@@ -815,11 +1041,12 @@ def main(argv=None) -> int:
         return 1
 
     cache = load_cache()
+    tmdb_ctx = tmdb_lists_context(config)
     failed = 0
     results: list[dict] = []
     for actor in actors:
         try:
-            results.append(process_actor(actor, args, cache))
+            results.append(process_actor(actor, args, cache, tmdb_ctx))
         except SyncError as exc:
             failed += 1
             print(f"  ERREUR ({actor.get('name')}) : {exc}", file=sys.stderr)
@@ -828,6 +1055,8 @@ def main(argv=None) -> int:
             print(f"  ERREUR inattendue ({actor.get('name')}) : {exc!r}", file=sys.stderr)
     if not args.dry_run:
         save_cache(cache)
+        if tmdb_ctx is not None:
+            write_tmdb_lists_output(tmdb_ctx)
         if results:
             try:
                 generate_addon(config, results)

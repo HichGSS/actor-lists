@@ -1,5 +1,11 @@
 {
   "github_repo": "HichGSS/actor-lists",
+  "tmdb_lists": {
+    "enabled": true,
+    "max_cast_order": 3,
+    "name_template": "{name}",
+    "description_template": "Films où {name} tient un rôle principal — mise à jour automatique"
+  },
   "actors": [
     {
       "name": "Swann Arlaud",
