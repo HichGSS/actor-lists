@@ -1017,6 +1017,11 @@ def main(argv=None) -> int:
     ap.add_argument("--tmdb-login-finish", action="store_true",
                     help="termine la connexion TMDB v4 et ecrit les jetons dans .env")
     args = ap.parse_args(argv)
+    for stream in (sys.stdout, sys.stderr):  # console Windows : pas de plantage sur un titre exotique
+        try:
+            stream.reconfigure(errors="replace")
+        except (AttributeError, ValueError):
+            pass
     load_dotenv()
     if args.tmdb_login:
         return tmdb_login()

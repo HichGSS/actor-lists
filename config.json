@@ -34,60 +34,6 @@
       "include_tmdb_ids": []
     },
     {
-      "name": "Jean Gabin",
-      "tmdb_id": 11544,
-      "mdblist": false,
-      "min_vote_count": 10
-    },
-    {
-      "name": "Lino Ventura",
-      "tmdb_id": 15397,
-      "mdblist": false,
-      "min_vote_count": 10
-    },
-    {
-      "name": "Alain Delon",
-      "tmdb_id": 15135,
-      "mdblist": false,
-      "min_vote_count": 10
-    },
-    {
-      "name": "Jean-Paul Belmondo",
-      "tmdb_id": 3829,
-      "mdblist": false,
-      "min_vote_count": 10
-    },
-    {
-      "name": "Louis de Funès",
-      "tmdb_id": 11187,
-      "mdblist": false,
-      "min_vote_count": 10
-    },
-    {
-      "name": "Michel Serrault",
-      "tmdb_id": 12270,
-      "mdblist": false,
-      "min_vote_count": 10
-    },
-    {
-      "name": "Jean Reno",
-      "tmdb_id": 1003,
-      "mdblist": false,
-      "min_vote_count": 10
-    },
-    {
-      "name": "Daniel Auteuil",
-      "tmdb_id": 6012,
-      "mdblist": false,
-      "min_vote_count": 10
-    },
-    {
-      "name": "Fabrice Luchini",
-      "tmdb_id": 28255,
-      "mdblist": false,
-      "min_vote_count": 10
-    },
-    {
       "name": "Vincent Cassel",
       "tmdb_id": 1925,
       "mdblist": false,
@@ -130,53 +76,62 @@
       "min_vote_count": 10
     },
     {
-      "name": "Marlon Brando",
-      "tmdb_id": 3084,
-      "mdblist": false
+      "name": "Gilles Lellouche",
+      "tmdb_id": 54291,
+      "mdblist": false,
+      "min_vote_count": 10
     },
     {
-      "name": "Paul Newman",
-      "tmdb_id": 3636,
-      "mdblist": false
+      "name": "Guillaume Canet",
+      "tmdb_id": 19866,
+      "mdblist": false,
+      "min_vote_count": 10
     },
     {
-      "name": "Jack Nicholson",
-      "tmdb_id": 514,
-      "mdblist": false
+      "name": "François Civil",
+      "tmdb_id": 78124,
+      "mdblist": false,
+      "min_vote_count": 10
     },
     {
-      "name": "Robert De Niro",
-      "tmdb_id": 380,
-      "mdblist": false
+      "name": "Reda Kateb",
+      "tmdb_id": 89626,
+      "mdblist": false,
+      "min_vote_count": 10
     },
     {
-      "name": "Al Pacino",
-      "tmdb_id": 1158,
-      "mdblist": false
+      "name": "Benoît Magimel",
+      "tmdb_id": 5442,
+      "mdblist": false,
+      "min_vote_count": 10
     },
     {
-      "name": "Morgan Freeman",
-      "tmdb_id": 192,
-      "mdblist": false
+      "name": "Louis Garrel",
+      "tmdb_id": 16269,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Vincent Lacoste",
+      "tmdb_id": 83797,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Karim Leklou",
+      "tmdb_id": 587142,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Raphaël Quenard",
+      "tmdb_id": 2185414,
+      "mdblist": false,
+      "min_vote_count": 10
     },
     {
       "name": "Denzel Washington",
       "tmdb_id": 5292,
-      "mdblist": false
-    },
-    {
-      "name": "Tom Hanks",
-      "tmdb_id": 31,
-      "mdblist": false
-    },
-    {
-      "name": "Anthony Hopkins",
-      "tmdb_id": 4173,
-      "mdblist": false
-    },
-    {
-      "name": "Daniel Day-Lewis",
-      "tmdb_id": 11856,
       "mdblist": false
     },
     {
@@ -210,13 +165,63 @@
       "mdblist": false
     },
     {
-      "name": "Philip Seymour Hoffman",
-      "tmdb_id": 1233,
+      "name": "Keanu Reeves",
+      "tmdb_id": 6384,
       "mdblist": false
     },
     {
-      "name": "Keanu Reeves",
-      "tmdb_id": 6384,
+      "name": "Ryan Gosling",
+      "tmdb_id": 30614,
+      "mdblist": false
+    },
+    {
+      "name": "Jake Gyllenhaal",
+      "tmdb_id": 131,
+      "mdblist": false
+    },
+    {
+      "name": "Matthew McConaughey",
+      "tmdb_id": 10297,
+      "mdblist": false
+    },
+    {
+      "name": "Cillian Murphy",
+      "tmdb_id": 2037,
+      "mdblist": false
+    },
+    {
+      "name": "Timothée Chalamet",
+      "tmdb_id": 1190668,
+      "mdblist": false
+    },
+    {
+      "name": "Adam Driver",
+      "tmdb_id": 1023139,
+      "mdblist": false
+    },
+    {
+      "name": "Tom Hardy",
+      "tmdb_id": 2524,
+      "mdblist": false
+    },
+    {
+      "name": "Michael Fassbender",
+      "tmdb_id": 17288,
+      "mdblist": false
+    },
+    {
+      "name": "Oscar Isaac",
+      "tmdb_id": 25072,
+      "mdblist": false
+    },
+    {
+      "name": "Robert Pattinson",
+      "tmdb_id": 11288,
+      "mdblist": false
+    },
+    {
+      "name": "Austin Butler",
+      "tmdb_id": 86654,
       "mdblist": false
     }
   ]
