@@ -1,4 +1,5 @@
 import datetime as dt
+import json
 import sys
 import tempfile
 import unittest
@@ -186,6 +187,105 @@ class BannerTests(unittest.TestCase):
             sync.generate_banners("Un Nom Tres Tres Long Pour Tester Le Retour A La Ligne", "x", None, None, out)
             self.assertTrue((out / "x.jpg").exists())
             self.assertTrue((out / "x_poster.jpg").exists())
+
+
+class AddonTests(unittest.TestCase):
+    CONFIG = {"github_repo": "HichGSS/actor-lists",
+              "actors": [{"name": "Vincent Lindon"}, {"name": "Swann Arlaud"}]}
+
+    @staticmethod
+    def film(n, date, imdb="auto", **kw):
+        return {"title": f"Film {n}", "year": date[:4], "tmdb": n,
+                "imdb": f"tt{n}" if imdb == "auto" else imdb, "release_date": date,
+                "poster_path": f"/p{n}.jpg", "backdrop_path": None, "overview": "", **kw}
+
+    def desired(self):
+        return [self.film(1, "2010-05-01"), self.film(2, "2022-03-03"),
+                self.film(3, "2015-01-01", imdb=None), self.film(4, ""), self.film(5, "2001-01-01")]
+
+    def results(self):
+        return [{"name": "Vincent Lindon", "slug": "vincent-lindon", "desired": self.desired()},
+                {"name": "Swann Arlaud", "slug": "swann-arlaud", "desired": self.desired()[:1]}]
+
+    def load(self, d, rel):
+        return json.loads((Path(d) / rel).read_text(encoding="utf-8"))
+
+    def test_manifest_and_catalogs(self):
+        with tempfile.TemporaryDirectory() as d:
+            sync.generate_addon(self.CONFIG, self.results(), Path(d))
+            m = self.load(d, "manifest.json")
+            self.assertEqual(m["id"], "community.actorlists.hichgss")
+            self.assertEqual([c["id"] for c in m["catalogs"]], ["actorlists-movie", "actorlists-series"])
+            self.assertEqual(m["idPrefixes"], ["actorlists-"])
+            self.assertTrue(m["logo"].endswith("/banners/vincent-lindon_poster.jpg"))
+            self.assertTrue((Path(d) / ".nojekyll").exists())
+            cat = self.load(d, "catalog/series/actorlists-series.json")["metas"]
+            self.assertEqual([c["id"] for c in cat],
+                             ["actorlists-series-vincent-lindon", "actorlists-series-swann-arlaud"])
+            self.assertEqual(cat[0]["description"], "Filmographie de Vincent Lindon (4 films)")
+            self.assertEqual(cat[0]["background"],
+                             "https://raw.githubusercontent.com/HichGSS/actor-lists/main/banners/vincent-lindon.jpg")
+
+    def test_movie_order_and_missing_imdb(self):
+        with tempfile.TemporaryDirectory() as d:
+            sync.generate_addon(self.CONFIG, self.results(), Path(d))
+            meta = self.load(d, "meta/movie/actorlists-movie-vincent-lindon.json")["meta"]
+            self.assertEqual([v["id"] for v in meta["videos"]], ["tt4", "tt2", "tt1", "tt5"])
+            self.assertNotIn("episode", meta["videos"][0])
+            self.assertNotIn("released", meta["videos"][0])
+            self.assertEqual(meta["videos"][1]["released"], "2022-03-03T00:00:00.000Z")
+            self.assertEqual(meta["videos"][1]["title"], "Film 2 (2022)")
+            self.assertEqual(meta["videos"][1]["thumbnail"], "https://image.tmdb.org/t/p/w500/p2.jpg")
+
+    def test_series_numbering_chronological(self):
+        with tempfile.TemporaryDirectory() as d:
+            sync.generate_addon(self.CONFIG, self.results(), Path(d))
+            meta = self.load(d, "meta/series/actorlists-series-vincent-lindon.json")["meta"]
+            self.assertEqual(meta["type"], "series")
+            self.assertEqual([v["id"] for v in meta["videos"]], ["tt5", "tt1", "tt2", "tt4"])
+            self.assertEqual([(v["season"], v["episode"]) for v in meta["videos"]],
+                             [(1, 1), (1, 2), (1, 3), (1, 4)])
+
+    def test_no_colon_in_filenames(self):
+        with tempfile.TemporaryDirectory() as d:
+            sync.generate_addon(self.CONFIG, self.results(), Path(d))
+            files = [p for p in Path(d).rglob("*") if p.is_file()]
+            self.assertEqual(len(files), 8)
+            self.assertFalse([p for p in files if ":" in p.name])
+
+    def test_stale_cleanup_and_failed_actor_kept(self):
+        with tempfile.TemporaryDirectory() as d:
+            sync.generate_addon(self.CONFIG, self.results(), Path(d))
+            stale = Path(d) / "meta/movie/actorlists-movie-old-actor.json"
+            stale.write_text("{}", encoding="utf-8")
+            other = Path(d) / "meta/movie/readme.json"
+            other.write_text("{}", encoding="utf-8")
+            # Swann Arlaud en echec : son fichier est conserve et reste au catalogue
+            sync.generate_addon(self.CONFIG, self.results()[:1], Path(d))
+            self.assertFalse(stale.exists())
+            self.assertTrue(other.exists())
+            self.assertTrue((Path(d) / "meta/movie/actorlists-movie-swann-arlaud.json").exists())
+            cat = self.load(d, "catalog/movie/actorlists-movie.json")["metas"]
+            self.assertEqual(len(cat), 2)
+            # Acteur retire de la config : supprime
+            sync.generate_addon({**self.CONFIG, "actors": self.CONFIG["actors"][:1]},
+                                self.results()[:1], Path(d))
+            self.assertFalse((Path(d) / "meta/movie/actorlists-movie-swann-arlaud.json").exists())
+            self.assertFalse((Path(d) / "meta/series/actorlists-series-swann-arlaud.json").exists())
+
+    def test_unchanged_not_rewritten_and_no_repo(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.assertTrue(sync.generate_addon(self.CONFIG, self.results(), Path(d)))
+            self.assertEqual(sync.generate_addon(self.CONFIG, self.results(), Path(d)), [])
+        with tempfile.TemporaryDirectory() as d:
+            self.assertEqual(sync.generate_addon({"actors": []}, self.results(), Path(d)), [])
+            self.assertEqual(list(Path(d).iterdir()), [])
+
+    def test_build_desired_carries_tmdb_fields(self):
+        m = movie(7, date="2020-02-02", poster_path="/p.jpg", backdrop_path="/b.jpg", overview="Resume")
+        d = sync.build_desired([m], {"7": "tt7"})[0]
+        self.assertEqual((d["imdb"], d["release_date"], d["poster_path"], d["backdrop_path"],
+                          d["overview"], d["year"]), ("tt7", "2020-02-02", "/p.jpg", "/b.jpg", "Resume", "2020"))
 
 
 if __name__ == "__main__":

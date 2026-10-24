@@ -110,3 +110,20 @@ Les champs omis prennent leurs valeurs par défaut (`max_cast_order` 15, `min_vo
 - **Un film manque ou est en trop** : utilisez `include_tmdb_ids` / `exclude_tmdb_ids`, ou ajustez `max_cast_order` et `min_vote_count`.
 - **L'image ne s'affiche pas dans Omni** : le dépôt doit être public, la branche doit s'appeler `main`, et le workflow doit avoir tourné au moins une fois.
 - **Tester en local** : `pip install -r requirements.txt`, définissez `TMDB_API_KEY` (et `MDBLIST_API_KEY`), puis `python sync.py --dry-run` (affiche la liste et les différences sans rien écrire). Options : `--actor "Nom"`, `--no-banner`. Tests : `python -m unittest discover -s tests`.
+
+## Addon Omni « Acteurs » (expérimental)
+
+En plus de MDBList, le script génère un **addon Stremio statique** dans le dossier `docs/` (catalogue « Acteurs » dont les tuiles sont les bannières d'acteurs ; ouvrir une tuile affiche les films de l'acteur).
+
+1. Dans `config.json`, la clé `github_repo` (ex. `"HichGSS/actor-lists"`) doit pointer vers votre dépôt, sinon l'addon n'est pas généré.
+2. Activez GitHub Pages : **Settings → Pages → Source : Deploy from a branch → branche `main`, dossier `/docs`**.
+3. Après un passage du workflow (qui commit `docs/`), installez l'addon dans Omni avec l'adresse : `https://hichgss.github.io/actor-lists/manifest.json`
+
+Deux catalogues sont proposés, car on ignore quel type de fiche Omni gère le mieux :
+
+- **Acteurs** (type film) : liste des films, du plus récent au plus ancien ;
+- **Acteurs (test serie)** (type série) : les films sont présentés comme des épisodes de la saison 1, du plus ancien (épisode 1) au plus récent.
+
+Testez les deux et gardez celui qui fonctionne dans Omni (masquez/supprimez l'autre).
+
+Choisir un film de la liste dépend de l'addon de streams (AIOStreams) : Omni lui envoie l'identifiant IMDb du film (`tt…`) et AIOStreams renvoie les sources.

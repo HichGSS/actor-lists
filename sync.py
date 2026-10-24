@@ -24,6 +24,8 @@ CONFIG_PATH = ROOT / "config.json"
 CACHE_PATH = ROOT / "cache" / "imdb_ids.json"
 BANNER_DIR = ROOT / "banners"
 OUTPUT_DIR = ROOT / "output"
+ADDON_DIR = ROOT / "docs"
+ADDON_PREFIX = "actorlists-"
 
 TMDB_BASE = "https://api.themoviedb.org/3"
 TMDB_IMG = "https://image.tmdb.org/t/p/original"
@@ -213,6 +215,10 @@ def build_desired(movies: list[dict], cache: dict) -> list[dict]:
             "year": rd[:4] if rd else "",
             "tmdb": m["id"],
             "imdb": get_imdb_id(m["id"], cache),
+            "release_date": rd,
+            "poster_path": m.get("poster_path") or None,
+            "backdrop_path": m.get("backdrop_path") or None,
+            "overview": m.get("overview") or "",
         })
     return out
 
@@ -522,7 +528,136 @@ def write_output(slug: str, desired: list[dict]) -> None:
         p.write_text(text, encoding="utf-8")
 
 
-def process_actor(actor: dict, args, cache: dict) -> None:
+# --------------------------------------------------------------------------
+# Addon Stremio statique (docs/)
+# --------------------------------------------------------------------------
+ADDON_TYPES = ("movie", "series")
+TMDB_THUMB = "https://image.tmdb.org/t/p/w500"
+
+
+def _json_bytes(obj) -> bytes:
+    return (json.dumps(obj, ensure_ascii=False, separators=(",", ":")) + "\n").encode("utf-8")
+
+
+def banner_urls(repo: str, slug: str) -> tuple[str, str]:
+    base = f"https://raw.githubusercontent.com/{repo}/main/banners"
+    return f"{base}/{slug}_poster.jpg", f"{base}/{slug}.jpg"
+
+
+def build_videos(desired: list[dict], kind: str) -> list[dict]:
+    """Videos Stremio. movie : plus recent d'abord (sans date en premier) ;
+    series : chronologique (sans date a la fin), numerotes saison 1 / episode i."""
+    items = [d for d in desired if d.get("imdb")]
+    dated = sorted((d for d in items if d.get("release_date")), key=lambda d: d["release_date"],
+                   reverse=(kind == "movie"))
+    undated = [d for d in items if not d.get("release_date")]
+    ordered = undated + dated if kind == "movie" else dated + undated
+    videos = []
+    for i, d in enumerate(ordered, 1):
+        title = d.get("title") or "?"
+        v = {"id": d["imdb"], "title": f"{title} ({d['year']})" if d.get("year") else title}
+        if d.get("release_date"):
+            v["released"] = f"{d['release_date'][:10]}T00:00:00.000Z"
+        img = d.get("poster_path") or d.get("backdrop_path")
+        if img:
+            v["thumbnail"] = f"{TMDB_THUMB}{img}"
+        if d.get("overview"):
+            v["overview"] = d["overview"]
+        if kind == "series":
+            v["season"] = 1
+            v["episode"] = i
+        videos.append(v)
+    return videos
+
+
+def build_manifest(logo: str | None) -> dict:
+    m = {
+        "id": "community.actorlists.hichgss", "version": "1.0.0", "name": "Acteurs",
+        "description": "Filmographies d'acteurs (mise a jour quotidienne)",
+        "resources": ["catalog", {"name": "meta", "types": list(ADDON_TYPES),
+                                  "idPrefixes": [ADDON_PREFIX]}],
+        "types": list(ADDON_TYPES),
+        "catalogs": [{"type": "movie", "id": "actorlists-movie", "name": "Acteurs"},
+                     {"type": "series", "id": "actorlists-series", "name": "Acteurs (test serie)"}],
+        "idPrefixes": [ADDON_PREFIX],
+        "behaviorHints": {"configurable": False, "configurationRequired": False},
+    }
+    if logo:
+        m["logo"] = logo
+    return m
+
+
+def generate_addon(config: dict, results: list[dict], out_dir: Path = ADDON_DIR) -> list[str]:
+    """Genere l'addon dans out_dir ; retourne les chemins (relatifs) reellement ecrits."""
+    repo = (config.get("github_repo") or "").strip()
+    if not repo:
+        print("  ! github_repo absent de config.json : addon non genere.")
+        return []
+    written: list[str] = []
+
+    def put(rel: str, data: bytes) -> None:
+        if write_if_changed(out_dir / rel, data):
+            written.append(rel)
+
+    by_slug = {r["slug"]: r for r in results}
+    ordered_slugs: list[str] = []
+    for a in config.get("actors") or []:
+        if a.get("name"):
+            sl = slugify(a["name"])
+            if sl not in ordered_slugs:
+                ordered_slugs.append(sl)
+    for r in results:  # acteurs sans nom dans la config
+        if r["slug"] not in ordered_slugs:
+            ordered_slugs.append(r["slug"])
+
+    catalogs: dict[str, list[dict]] = {k: [] for k in ADDON_TYPES}
+    logo = None
+    for slug in ordered_slugs:
+        poster, background = banner_urls(repo, slug)
+        res = by_slug.get(slug)
+        for kind in ADDON_TYPES:
+            mid = f"{ADDON_PREFIX}{kind}-{slug}"
+            meta_rel = f"meta/{kind}/{mid}.json"
+            if res is None:  # echec ce jour-la : on garde l'existant
+                try:
+                    old = json.loads((out_dir / meta_rel).read_text(encoding="utf-8"))["meta"]
+                except (OSError, ValueError, KeyError):
+                    continue
+                catalogs[kind].append({k: v for k, v in old.items() if k != "videos"})
+                continue
+            videos = build_videos(res["desired"], kind)
+            meta = {"id": mid, "type": kind, "name": res["name"], "poster": poster,
+                    "posterShape": "poster", "background": background,
+                    "description": f"Filmographie de {res['name']} ({len(videos)} films)"}
+            catalogs[kind].append(dict(meta))
+            put(meta_rel, _json_bytes({"meta": {**meta, "videos": videos}}))
+        if logo is None:
+            logo = poster
+
+    put("manifest.json", _json_bytes(build_manifest(logo)))
+    for kind in ADDON_TYPES:
+        put(f"catalog/{kind}/{ADDON_PREFIX}{kind}.json", _json_bytes({"metas": catalogs[kind]}))
+    if not (out_dir / ".nojekyll").exists():
+        put(".nojekyll", b"")
+
+    # Nettoyage : metas d'acteurs qui ne sont plus dans la config
+    keep = set(ordered_slugs)
+    removed = []
+    for kind in ADDON_TYPES:
+        prefix = f"{ADDON_PREFIX}{kind}-"
+        for f in (out_dir / "meta" / kind).glob(f"{prefix}*.json"):
+            if f.name[len(prefix):-len(".json")] not in keep:
+                f.unlink()
+                removed.append(f"meta/{kind}/{f.name}")
+    print(f"  Addon : {len(written)} fichier(s) ecrit(s), {len(removed)} supprime(s).")
+    for rel in written:
+        print(f"    + docs/{rel}")
+    for rel in removed:
+        print(f"    - docs/{rel}")
+    return written
+
+
+def process_actor(actor: dict, args, cache: dict) -> dict:
     name = actor.get("name") or ""
     print(f"\n=== {name or '(sans nom)'} ===")
     tmdb_id = actor.get("tmdb_id")
@@ -576,6 +711,7 @@ def process_actor(actor: dict, args, cache: dict) -> None:
             errors.append(f"bannieres : {exc}")
     if errors:
         raise SyncError("; ".join(errors))
+    return {"name": name, "slug": slug, "desired": desired}
 
 
 def main(argv=None) -> int:
@@ -606,9 +742,10 @@ def main(argv=None) -> int:
 
     cache = load_cache()
     failed = 0
+    results: list[dict] = []
     for actor in actors:
         try:
-            process_actor(actor, args, cache)
+            results.append(process_actor(actor, args, cache))
         except SyncError as exc:
             failed += 1
             print(f"  ERREUR ({actor.get('name')}) : {exc}", file=sys.stderr)
@@ -617,6 +754,12 @@ def main(argv=None) -> int:
             print(f"  ERREUR inattendue ({actor.get('name')}) : {exc!r}", file=sys.stderr)
     if not args.dry_run:
         save_cache(cache)
+        if results:
+            try:
+                generate_addon(config, results)
+            except Exception as exc:  # noqa: BLE001
+                failed += 1
+                print(f"  ERREUR addon : {exc!r}", file=sys.stderr)
     if failed:
         print(f"\n{failed} acteur(s) en echec.", file=sys.stderr)
         return 1
