@@ -7,7 +7,9 @@
       "mdblist_list_name": "Swann Arlaud",
       "max_cast_order": 15,
       "min_vote_count": 5,
-      "exclude_genre_ids": [99],
+      "exclude_genre_ids": [
+        99
+      ],
       "include_upcoming": true,
       "exclude_tmdb_ids": [],
       "include_tmdb_ids": []
@@ -18,10 +20,198 @@
       "mdblist_list_name": "Vincent Lindon",
       "max_cast_order": 15,
       "min_vote_count": 5,
-      "exclude_genre_ids": [99],
+      "exclude_genre_ids": [
+        99
+      ],
       "include_upcoming": true,
       "exclude_tmdb_ids": [],
       "include_tmdb_ids": []
+    },
+    {
+      "name": "Jean Gabin",
+      "tmdb_id": 11544,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Lino Ventura",
+      "tmdb_id": 15397,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Alain Delon",
+      "tmdb_id": 15135,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Jean-Paul Belmondo",
+      "tmdb_id": 3829,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Louis de Funès",
+      "tmdb_id": 11187,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Michel Serrault",
+      "tmdb_id": 12270,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Jean Reno",
+      "tmdb_id": 1003,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Daniel Auteuil",
+      "tmdb_id": 6012,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Fabrice Luchini",
+      "tmdb_id": 28255,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Vincent Cassel",
+      "tmdb_id": 1925,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Jean Dujardin",
+      "tmdb_id": 56024,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Omar Sy",
+      "tmdb_id": 78423,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Romain Duris",
+      "tmdb_id": 17497,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Mathieu Amalric",
+      "tmdb_id": 8789,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Tahar Rahim",
+      "tmdb_id": 81051,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Pierre Niney",
+      "tmdb_id": 145121,
+      "mdblist": false,
+      "min_vote_count": 10
+    },
+    {
+      "name": "Marlon Brando",
+      "tmdb_id": 3084,
+      "mdblist": false
+    },
+    {
+      "name": "Paul Newman",
+      "tmdb_id": 3636,
+      "mdblist": false
+    },
+    {
+      "name": "Jack Nicholson",
+      "tmdb_id": 514,
+      "mdblist": false
+    },
+    {
+      "name": "Robert De Niro",
+      "tmdb_id": 380,
+      "mdblist": false
+    },
+    {
+      "name": "Al Pacino",
+      "tmdb_id": 1158,
+      "mdblist": false
+    },
+    {
+      "name": "Morgan Freeman",
+      "tmdb_id": 192,
+      "mdblist": false
+    },
+    {
+      "name": "Denzel Washington",
+      "tmdb_id": 5292,
+      "mdblist": false
+    },
+    {
+      "name": "Tom Hanks",
+      "tmdb_id": 31,
+      "mdblist": false
+    },
+    {
+      "name": "Anthony Hopkins",
+      "tmdb_id": 4173,
+      "mdblist": false
+    },
+    {
+      "name": "Daniel Day-Lewis",
+      "tmdb_id": 11856,
+      "mdblist": false
+    },
+    {
+      "name": "Brad Pitt",
+      "tmdb_id": 287,
+      "mdblist": false
+    },
+    {
+      "name": "Leonardo DiCaprio",
+      "tmdb_id": 6193,
+      "mdblist": false
+    },
+    {
+      "name": "Joaquin Phoenix",
+      "tmdb_id": 73421,
+      "mdblist": false
+    },
+    {
+      "name": "Christian Bale",
+      "tmdb_id": 3894,
+      "mdblist": false
+    },
+    {
+      "name": "Matt Damon",
+      "tmdb_id": 1892,
+      "mdblist": false
+    },
+    {
+      "name": "Tom Cruise",
+      "tmdb_id": 500,
+      "mdblist": false
+    },
+    {
+      "name": "Philip Seymour Hoffman",
+      "tmdb_id": 1233,
+      "mdblist": false
+    },
+    {
+      "name": "Keanu Reeves",
+      "tmdb_id": 6384,
+      "mdblist": false
     }
   ]
 }

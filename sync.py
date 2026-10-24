@@ -418,27 +418,9 @@ def _wrap(draw, text: str, font, max_w: int) -> list[str]:
 def make_landscape(name: str, photo, backdrop):
     from PIL import Image, ImageDraw, ImageFilter
     W, H = 1920, 1080
-    # Fond noir vignette (le backdrop n'est plus utilise) : centre gris tres sombre, bords noirs.
-    fade = Image.radial_gradient("L").resize((W, H), Image.BICUBIC)  # 0 au centre, 255 aux bords
-    bg = Image.eval(fade, lambda v: max(0, 46 - v * 46 // 200))
-    canvas = Image.merge("RGB", (bg, bg, bg)).convert("RGBA")
-
-    ph_w, ph_h = 560, 840
-    if photo is not None:
-        p = _cover(photo.convert("RGB"), ph_w, ph_h)
-    else:
-        p = Image.new("RGB", (ph_w, ph_h), (60, 60, 70))
+    ph_w, ph_h = 560, 840  # le backdrop n'est plus utilise : fond noir vignette
     x0, y0 = 120, (H - ph_h) // 2
-    mask = Image.new("L", (ph_w, ph_h), 0)
-    ImageDraw.Draw(mask).rounded_rectangle((0, 0, ph_w - 1, ph_h - 1), radius=36, fill=255)
-    sm = Image.new("L", (W, H), 0)
-    ImageDraw.Draw(sm).rounded_rectangle((x0, y0 + 14, x0 + ph_w, y0 + ph_h + 14),
-                                         radius=36, fill=150)
-    sm = sm.filter(ImageFilter.GaussianBlur(24))
-    shadow = Image.new("RGBA", (W, H), (0, 0, 0, 255))
-    shadow.putalpha(sm)
-    canvas = Image.alpha_composite(canvas, shadow)
-    canvas.paste(p.convert("RGBA"), (x0, y0), mask)
+    canvas = _photo_card(_vignette_bg(W, H), photo, x0, y0, ph_w, ph_h)
 
     draw = ImageDraw.Draw(canvas)
     tx = x0 + ph_w + 100
@@ -455,27 +437,42 @@ def make_landscape(name: str, photo, backdrop):
     return canvas.convert("RGB")
 
 
+def _vignette_bg(W: int, H: int):
+    """Fond noir vignette : centre gris tres sombre, bords noirs (RGBA)."""
+    from PIL import Image
+    fade = Image.radial_gradient("L").resize((W, H), Image.BICUBIC)  # 0 au centre, 255 aux bords
+    bg = Image.eval(fade, lambda v: max(0, 46 - v * 46 // 200))
+    return Image.merge("RGB", (bg, bg, bg)).convert("RGBA")
+
+
+def _photo_card(canvas, photo, x0: int, y0: int, w: int, h: int):
+    """Colle la photo aux coins arrondis, avec ombre portee, sur canvas (RGBA)."""
+    from PIL import Image, ImageDraw, ImageFilter
+    W, H = canvas.size
+    p = _cover(photo.convert("RGB"), w, h) if photo is not None else Image.new("RGB", (w, h), (60, 60, 70))
+    mask = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, w - 1, h - 1), radius=36, fill=255)
+    sm = Image.new("L", (W, H), 0)
+    ImageDraw.Draw(sm).rounded_rectangle((x0, y0 + 14, x0 + w, y0 + h + 14), radius=36, fill=150)
+    shadow = Image.new("RGBA", (W, H), (0, 0, 0, 255))
+    shadow.putalpha(sm.filter(ImageFilter.GaussianBlur(24)))
+    canvas = Image.alpha_composite(canvas, shadow)
+    canvas.paste(p.convert("RGBA"), (x0, y0), mask)
+    return canvas
+
+
 def make_portrait(name: str, photo):
-    from PIL import Image, ImageDraw
+    from PIL import ImageDraw
     W, H = 1000, 1500
-    if photo is not None:
-        canvas = _cover(photo.convert("RGB"), W, H)
-    else:
-        canvas = Image.new("RGB", (W, H), (45, 45, 55))
-    canvas = canvas.convert("RGBA")
-    grad = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    gd = ImageDraw.Draw(grad)
-    start = int(H * 0.55)
-    for y in range(start, H):
-        a = int(255 * min(1.0, (y - start) / (H - start) * 1.15) ** 1.2)
-        gd.line([(0, y), (W, y)], fill=(8, 8, 12, a))
-    canvas = Image.alpha_composite(canvas, grad)
+    ph_w, ph_h = 760, 1080
+    canvas = _photo_card(_vignette_bg(W, H), photo, (W - ph_w) // 2, 90, ph_w, ph_h)
     draw = ImageDraw.Draw(canvas)
     max_w = W - 120
-    font, size = _fit_text(draw, name, max_w, 120, 56)
+    font, size = _fit_text(draw, name, max_w, 110, 56)
     lines = _wrap(draw, name, font, max_w)
     lh = int(size * 1.15)
-    y = H - 90 - lh * len(lines)
+    top = 90 + ph_h + 20  # zone sous la photo
+    y = top + (H - top - lh * len(lines)) // 2 - 10
     for ln in lines:
         x = (W - draw.textlength(ln, font=font)) / 2
         draw.text((x + 3, y + 3), ln, font=font, fill=(0, 0, 0, 160))
@@ -757,7 +754,9 @@ def process_actor(actor: dict, args, cache: dict) -> dict:
 
     errors = []
     have_key = bool(os.environ.get("MDBLIST_API_KEY", "").strip())
-    if not have_key and args.dry_run:
+    if actor.get("mdblist") is False:
+        print("  (mdblist: false : pas de liste MDBList, addon uniquement)")
+    elif not have_key and args.dry_run:
         print("  (MDBLIST_API_KEY absente : diff non calcule en mode dry-run)")
     else:
         try:

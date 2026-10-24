@@ -1,0 +1,872 @@
+[
+  {
+    "title": "Crescendo",
+    "year": "2026",
+    "tmdb": 1466123,
+    "imdb": "tt37535559",
+    "release_date": "2026-05-27",
+    "poster_path": "/qAcjyTgATrbqpv8h6jKXAaHU4u0.jpg",
+    "backdrop_path": "/m6lfhmhlH3zEZHlvNR3YmPd16wT.jpg",
+    "overview": "In the ruins of a Roman amphitheatre in the South of France, the cast and crew of an ambitious staging of The Marriage of Figaro is thrown off balance when troubling accusations threaten to derail the entire production.  As tensions intensify, loyalties slowly fracture and deep generational disagreement emerges, throwing their sheltered opera world into a great divide."
+  },
+  {
+    "title": "A Private Life",
+    "year": "2025",
+    "tmdb": 1290432,
+    "imdb": "tt33852162",
+    "release_date": "2025-09-27",
+    "poster_path": "/grozteYTaspY4xaJRt3nw4zMtTs.jpg",
+    "backdrop_path": "/3fZ5HvkrjaS34sZERshWm9koXdF.jpg",
+    "overview": "When renowned psychiatrist Lilian Steiner learns of the sudden death of a patient, she suspects murder.  She mounts a private investigation, enlisting an odd assortment of quirky characters."
+  },
+  {
+    "title": "An Ordinary Case",
+    "year": "2024",
+    "tmdb": 1136394,
+    "imdb": "tt29102598",
+    "release_date": "2024-09-11",
+    "poster_path": "/xMRuEL73DJrIDKvMyLU7v5ksBv8.jpg",
+    "backdrop_path": "/oMUDVhNnIhSOfMKE60joozzNbUc.jpg",
+    "overview": "Jean Monier is a disillusioned lawyer, appointed to defend Nicolas Milik, a man accused of murdering his wife. While everything points to his guilt, Monier takes up the case, convinced of his innocence."
+  },
+  {
+    "title": "Love Boat",
+    "year": "2024",
+    "tmdb": 1119550,
+    "imdb": "tt30402052",
+    "release_date": "2024-06-05",
+    "poster_path": "/zTgdFvMZiIG8c3pwBNpTQw82G70.jpg",
+    "backdrop_path": "/oAaGKdjM6IMPOJpDWesSr7MJAjz.jpg",
+    "overview": "To overcome their financial problems, Justine, her husband and their whole group of friends organize a fake romantic cruise for Franck, a big investor, who is trying to seduce a woman."
+  },
+  {
+    "title": "A Silence",
+    "year": "2024",
+    "tmdb": 962319,
+    "imdb": "tt25051484",
+    "release_date": "2024-01-10",
+    "poster_path": "/pXWJGRUqztTkflac30jjd2bjvBU.jpg",
+    "backdrop_path": "/bJguPUAifDyicwwMwjYFBrpBBQB.jpg",
+    "overview": "Astrid is the wife of an acclaimed lawyer. Silenced for 25 years, her family balance suddenly collapses when her children initiate their search for justice."
+  },
+  {
+    "title": "The New Toy",
+    "year": "2022",
+    "tmdb": 865498,
+    "imdb": "tt13361648",
+    "release_date": "2022-10-19",
+    "poster_path": "/rCSxzI0Y0pX6pqD69CusJhvQtIC.jpg",
+    "backdrop_path": "/diO9O2aKKHijX8Xxh8eJqjHd7VU.jpg",
+    "overview": "Samy lives happily with his wife, Alice, in a poor urban housing project amongst friends and neighbours. For his son’s birthday, the richest man in France throws open his grand department store, offering the boy whatever he wants. Alexandre chooses Samy, the night watchman, as his new toy…"
+  },
+  {
+    "title": "Farewell, Mr. Haffmann",
+    "year": "2022",
+    "tmdb": 670243,
+    "imdb": "tt10545704",
+    "release_date": "2022-01-12",
+    "poster_path": "/7PnzcmLH5j4gek0Z8OT3uTilAQT.jpg",
+    "backdrop_path": "/7I1Yj4vz57L6BF6theOaKOs9QYS.jpg",
+    "overview": "Paris 1942. François Mercier is an ordinary man who only aspires to start a family with the woman he loves, Blanche. He is also the employee of a talented jeweler, Mr. Haffmann. But faced with the German occupation, the two men will have no other choice but to conclude an agreement whose consequences, over the months, will upset the fate of our three characters."
+  },
+  {
+    "title": "La Belle Époque",
+    "year": "2019",
+    "tmdb": 595975,
+    "imdb": "tt9172422",
+    "release_date": "2019-11-06",
+    "poster_path": "/eHojoVxYRyqGABgoiTYyfkYqTra.jpg",
+    "backdrop_path": "/sfoaAbgEQlQI8dBFJsiIdXiLI7x.jpg",
+    "overview": "Victor, a disillusioned 60-something whose marriage is on the rocks, opts to relive the week of his life when, 40 years earlier, he met his true love through a company that allows customers to return to the time period of their choosing."
+  },
+  {
+    "title": "Just the Three of Us",
+    "year": "2019",
+    "tmdb": 575600,
+    "imdb": "tt7654880",
+    "release_date": "2019-03-20",
+    "poster_path": "/hXhA5QW73eX1X4zQQOYMOAqgNe2.jpg",
+    "backdrop_path": "/jNNvkiuwY0jg7PooPU6qlp3xA4E.jpg",
+    "overview": "Gilbert and Simone live a restless retreat in a village in the South of France. The departure of Étienne, her neighbor and lover, the lack of money, but especially the constant bitterness of her husband, push Simone to flee the home. Gilbert then realizes that he is ready to do anything to find his wife, his love."
+  },
+  {
+    "title": "Remi, Nobody's Boy",
+    "year": "2018",
+    "tmdb": 458302,
+    "imdb": "tt6741368",
+    "release_date": "2018-12-12",
+    "poster_path": "/mQYXlxlUTmOP4FWt52qkZZb8JNM.jpg",
+    "backdrop_path": "/ufzWHtqmthDV3Vq7LqqDNebq5Cn.jpg",
+    "overview": "At the age of 10 years, young Rémi is snatched from his adoptive mother and entrusted to the signor Vitalis, a mysterious itinerant musician. Has its hard sides - he will learn the harsh life of acrobat and sing to win his bread. Accompanied by the faithful dog capi and of the small monkey Joli-Coeur, his long trip through France, made for meetings, friendships and mutual assistance, leads him to the secret of its origins."
+  },
+  {
+    "title": "The Other Woman",
+    "year": "2018",
+    "tmdb": 499722,
+    "imdb": "tt7654872",
+    "release_date": "2018-04-26",
+    "poster_path": "/5WcVbQA1lT3iOroeLzRhlRpVo9N.jpg",
+    "backdrop_path": "/yP8fKBiHljcPJIPAH04hhd1F6zG.jpg",
+    "overview": "When Daniel and Isabelle invite Patrick and his new flame, Emma, to dinner, it’s with some misgivings. After all, Patrick has just dumped his ex-wife — their best friend — to run off with a much younger woman. But when the ravishing Emma appears, all of Daniel’s qualms fly out of the window. He’s instantly smitten with the seductive woman..."
+  },
+  {
+    "title": "Le Brio",
+    "year": "2017",
+    "tmdb": 452187,
+    "imdb": "tt6462462",
+    "release_date": "2017-11-22",
+    "poster_path": "/l43VMuUg1DoItf9nMcMSj2ZSbn3.jpg",
+    "backdrop_path": "/iEZ869MTsn6IvoK7wbKrlnlqxuc.jpg",
+    "overview": "After an incident, a brilliant professor known for his outbursts is forced to mentor the student he wronged for a speech contest."
+  },
+  {
+    "title": "The Confessions",
+    "year": "2016",
+    "tmdb": 393857,
+    "imdb": "tt4647784",
+    "release_date": "2016-04-21",
+    "poster_path": "/pcxQxrFk2gijj0vpeloUb8tIzNN.jpg",
+    "backdrop_path": "/4M8avt9wIxxY8vK2NbMF9XeHT3Q.jpg",
+    "overview": "A G8 meeting is being held at a luxury hotel on the German coast. The world's most powerful economists are gathered to enact important provisions that will deeply influence the world economy. One of the guests is a mysterious Italian monk, invited by Daniel Rochè, the director of the International Monetary Fund. He wants the monk to receive his confession, that night, in secret. The next morning, Rochè is found dead..."
+  },
+  {
+    "title": "In Her Name",
+    "year": "2016",
+    "tmdb": 381262,
+    "imdb": "tt4228810",
+    "release_date": "2016-03-16",
+    "poster_path": "/lVYfYQBBvs6yb7pChIBJ6R4vsrK.jpg",
+    "backdrop_path": "/rSWv4coph16vM5yOaOFXE1Y6qgY.jpg",
+    "overview": "In 1982, André Bamberski learns about the death of his 14 year-old daughter, Kalinka, while she was on vacation with her mother and stepfather in Germany. Convinced that Kalinka’s death was not an accident, Bamberski begins to investigate. A botched autopsy report raises his suspicions and leads him to accuse Kalinka’s stepfather, Dr Dieter Krombach, as the murderer.\r Unable to indict Krombach in Germany, Bamberski attempts to take the trial to France, where he will dedicate his life to Kalinka’s justice and the imprisonment of Krombach."
+  },
+  {
+    "title": "Les Naufragés",
+    "year": "2016",
+    "tmdb": 377798,
+    "imdb": "tt5338174",
+    "release_date": "2016-02-17",
+    "poster_path": "/jiURHqVlb8ofuG2rG2KxBbDgOga.jpg",
+    "backdrop_path": "/kKGhIl3dZOpVWPI1VPV5EWgeVTj.jpg",
+    "overview": "A shady businessman ,about to be arrested after ruining his country (and more) ,has to get away from his native France ;he meets a dry cleaner,William ,who's got a private plane and they crash on an island."
+  },
+  {
+    "title": "Our Women",
+    "year": "2015",
+    "tmdb": 332812,
+    "imdb": "tt3913206",
+    "release_date": "2015-04-29",
+    "poster_path": "/kIS2xmCZgEL0pWlhuv1cyZllVkw.jpg",
+    "backdrop_path": "/pD3kBsHG1PLLqto3CIO6eK4joOF.jpg",
+    "overview": "Max, Paul and Simon have been friends for 35 years. They take great pleasure in their one vacation a year together without their partners and meet-up regularly to spend evenings drinking or playing cards. Each has a successful career and they all appear to have perfect lives until the night Simon announces to his friends that he has just strangled his wife, Estelle after a blazing row. Max and Paul are horrified by Simon's confession, but worse is to come when Simon asks them to lie and provide him with an alibi for the time Estelle was killed. Both men are torn between lying or turning over their best friend to the police."
+  },
+  {
+    "title": "Among Friends",
+    "year": "2015",
+    "tmdb": 333549,
+    "imdb": "tt4246850",
+    "release_date": "2015-04-22",
+    "poster_path": "/qBl1n6XEeyfLNtYfLGrA5oC3A4g.jpg",
+    "backdrop_path": "/uxs6Y7pklrvlHYApKBgHZoFng8h.jpg",
+    "overview": "Three longtime friends set off on a boat trip with their romantic partners, but inclement weather, jealousy and confessions, will put to test their friendships."
+  },
+  {
+    "title": "Before the Winter Chill",
+    "year": "2013",
+    "tmdb": 218993,
+    "imdb": "tt2231630",
+    "release_date": "2013-11-26",
+    "poster_path": "/11wMh1PgDuR2F200f7hgbr37N7p.jpg",
+    "backdrop_path": "/qHDmgm7h0fL9VWANdfwXOYc6xP9.jpg",
+    "overview": "They are the perfect French haute bourgeois couple: Paul is a respected surgeon and Lucie cooks and gardens exquisitely. But now, in the autumn of his life, Paul can’t resist the lure of an ambiguous and dangerous relationship with a mysterious young woman. Might there be something sinister behind the roses delivered to his office and the “chance” meetings?"
+  },
+  {
+    "title": "Fanny",
+    "year": "2013",
+    "tmdb": 201018,
+    "imdb": "tt1872101",
+    "release_date": "2013-07-10",
+    "poster_path": "/mvb4hT4rEnAxMxo3zJj8X2fXROY.jpg",
+    "backdrop_path": "/yjlFv2kIQ6O7MSbNM6xGIHQIPy.jpg",
+    "overview": "\"Fanny\" is the second part of the \"Marseille trilogy\", made by Marcel Pagnol with the generic name of \"Marius, Fanny and César\". Fanny falls in love and is abandoned by Marius. Now she discovers she is pregnant. Her mother and Marius's father, César, persuade her to accept the romantic advances of a much older man. To save face, Fanny accepts to marry Honoré Panisse, a rich merchant of the Vieux Port, 30 years her senior who will recognize her son."
+  },
+  {
+    "title": "Marius",
+    "year": "2013",
+    "tmdb": 200645,
+    "imdb": "tt1872102",
+    "release_date": "2013-07-09",
+    "poster_path": "/5SF1K2NNF4jTAwTj3ersomzjDzw.jpg",
+    "backdrop_path": "/mOq4TpTwvtF3FgDGbOAl1YGz4dA.jpg",
+    "overview": "\"Marius\" takes place in Marseilles' Old Port, at the La Marine Bar, owned by César and his son Marius. Marius' biggest dream is to embark on one of the boats passing by his dad's bar and to set off to a faraway land. Fanny, a young and pretty seafood peddler, has secretly been in love with Marius since her childhood; Marius, never admitting it, has always loved Fanny. One day, a sailor drops by La Marine and offers him a job on an exploratory ship. Trying to hold him off and to make him jealous, Fanny confesses his love to him and provokes a fight between Marius and one of César's old friends, Panisse, a boat merchant, who despite his old age, has been courting Fanny for a while. Torn between the call of the sea and his love for her, Marius abandons his dream to be with Fanny who gives herself to him. As César and Honorine, Fanny's mother, are getting ready for the wedding, Marius changes his mind, drawn back to the call of the sea."
+  },
+  {
+    "title": "Jappeloup",
+    "year": "2013",
+    "tmdb": 172106,
+    "imdb": "tt2018079",
+    "release_date": "2013-03-13",
+    "poster_path": "/gUDW33zn3faZapPVDZIph8tvq0w.jpg",
+    "backdrop_path": "/hUCRLTCb9eq4ZttqYYxEnUqDvsf.jpg",
+    "overview": "A true sports story that utterly defies the odds, Duguay’s film captures the wild ups and downs of the Olympics-bound career of legendary equine star Jappeloup and his troubled rider, locked in a tense relationship with his horseman father and forever uncertain of his own skills as an equestrian"
+  },
+  {
+    "title": "The Lookout",
+    "year": "2012",
+    "tmdb": 122192,
+    "imdb": "tt1946298",
+    "release_date": "2012-09-05",
+    "poster_path": "/jLy3x4zEHrMeWtKzBcpsx4WLdH3.jpg",
+    "backdrop_path": "/dsVgmBCPaTs4ugO0ctH6g2jaCWC.jpg",
+    "overview": "When police is about to apprehend a famous gang of bank robbers, an elite sniper opens fire from a roof, thus facilitating the flee of his accomplices. However, one of them is seriously injured, which compromises the plans of the thieves."
+  },
+  {
+    "title": "Blood from a Stone",
+    "year": "2012",
+    "tmdb": 115523,
+    "imdb": "tt1860260",
+    "release_date": "2012-02-21",
+    "poster_path": "/gIy6z94Vb1kKSiYGbg4yuF9tDoP.jpg",
+    "backdrop_path": null,
+    "overview": "The day his bank refuses to finance him, Georges will do everything he can to save his shipyard and his employees."
+  },
+  {
+    "title": "The Well Digger's Daughter",
+    "year": "2011",
+    "tmdb": 62580,
+    "imdb": "tt1473063",
+    "release_date": "2011-04-20",
+    "poster_path": "/o0MGH7xXcbGao6uNJOyRAQj5l1R.jpg",
+    "backdrop_path": "/mzxbSuPn5a25sH8f77JnSVl1PRF.jpg",
+    "overview": "It's the beginning of the WWII. South of France. Patricia, 18, is the oldest daughter of a well-digger, Pascal, who considers her a princess because of her moral qualities. She's kind, devoted. One day, she briefly meets a young man, Jacques, the son of Mazel, owner of the shop where her father buy his material. He's handsome and teasing. Her father's friend, Felipe, would love to marry her, and he invites her to an aviation show. She accepts his invitation only because she knows Jacques is a pilot and will be there. Soon, she'll carry his child, and he'll be gone, and the family will have to deal with this out-of-wedlock pregnancy..."
+  },
+  {
+    "title": "Fair is Fair",
+    "year": "2010",
+    "tmdb": 53866,
+    "imdb": "tt1473142",
+    "release_date": "2010-10-06",
+    "poster_path": "/fYeROnYnvU21GyQutJzHE3ukSYb.jpg",
+    "backdrop_path": "/jscKOtChohryFi28wfbpOgq9Gwq.jpg",
+    "overview": "Condamné pour un crime qui n'était, selon lui, qu'un accident, Constant réussit à s'évader de la prison où il purge sa peine... Après une fuite aveugle, livré à tous les hasards, Constant finit par échouer dans un coin perdu, près des berges désertes d'un canal.... Se cachant sur une péniche à l'abandon, Constant tente de reprendre son souffle, accalmie de courte durée... Dès l'aube, Sylvia une pétillante jeune femme qui a reconnu l'homme traqué, lui propose un implacable marché : assassiner (puisqu'elle le pense être un tueur professionnel) Jeanne, sa mère adoptive sinon elle le dénonce à la police ! Piégé, Constant ne peut qu'accepter cette périlleuse \" mission \". Mais bien loin de tuer Jeanne, Constant la sauve d'un suicide annoncé."
+  },
+  {
+    "title": "Someone I Loved",
+    "year": "2009",
+    "tmdb": 17658,
+    "imdb": "tt1258141",
+    "release_date": "2009-05-06",
+    "poster_path": "/uX2QSatxilNGJPX2iwIzLxjEJGi.jpg",
+    "backdrop_path": "/7C8RrRE8u6cdDpW5XiQNtHvnNFo.jpg",
+    "overview": "One night, Pierre decides to reveal his painful secret to his daughter-in-law, who's just been abandoned by her husband. Pierre's secret is about his secret love to Mathilde, the woman he left to instead follow an easier path in life."
+  },
+  {
+    "title": "Me Two",
+    "year": "2008",
+    "tmdb": 14408,
+    "imdb": "tt0463352",
+    "release_date": "2008-06-18",
+    "poster_path": "/vd3ev4I518cqWhGdYiMKVB2nuyM.jpg",
+    "backdrop_path": "/mLj15aE3rMJ6ivXspzimSjJy9R5.jpg",
+    "overview": "80's pop icon Gilles Gabriel is about to make a comeback in the French music scene, until he accidentally hits Ranu, a slightly nutty accountant, when out driving one day. Both are horrified to realise that Gilles died in the crash, and that his spirit now lives in Ranu's head! The kooky accountant's life soon becomes chaos!"
+  },
+  {
+    "title": "Daddy Cool",
+    "year": "2008",
+    "tmdb": 10289,
+    "imdb": "tt1075111",
+    "release_date": "2008-04-30",
+    "poster_path": "/RtKkbnIsuQQqcAf5Ky1SLYXPZs.jpg",
+    "backdrop_path": "/g9tWOl5xq2srnnjU6NRi1csF0ej.jpg",
+    "overview": "The story about the age gap between a scientist father, Philipe Le Tallec, and his newly discovered teen aged daughter, Eglantine."
+  },
+  {
+    "title": "The Last Deadly Mission",
+    "year": "2008",
+    "tmdb": 14765,
+    "imdb": "tt0920470",
+    "release_date": "2008-03-12",
+    "poster_path": "/eo0VXzqKA5xkWUVDGqgaEzIpo8k.jpg",
+    "backdrop_path": "/qtkAtQalRCLKS7JpI6kGiETYlQe.jpg",
+    "overview": "A washed-up Marseilles cop (Auteuil) earns a chance at redemption by protecting a woman from the man who killed her parents as he is about to be released from prison."
+  },
+  {
+    "title": "The Second Wind",
+    "year": "2007",
+    "tmdb": 59918,
+    "imdb": "tt0795370",
+    "release_date": "2007-10-24",
+    "poster_path": "/auxgoI3jxk7S5ht0bq1wN135w9M.jpg",
+    "backdrop_path": "/tCqvD2AzIJ3vakoSTlwCfj9rS6R.jpg",
+    "overview": "Gu, a famous gangster, has just escaped from jail. All french police is after him. Before leaving the country with Manouche, the woman he loves, Gu needs a final job to get some money. The job works, but a police's scheming makes Gu appear as a traitor to his own accomplices. Gu will do whatever it takes to clean his honor..."
+  },
+  {
+    "title": "The Dinner Guest",
+    "year": "2007",
+    "tmdb": 42802,
+    "imdb": "tt0792975",
+    "release_date": "2007-09-19",
+    "poster_path": "/liNUP5DCJz2g7YwzsrPAZtQ5GAj.jpg",
+    "backdrop_path": "/nGSw9g3NKvIjNOiHg4GjJ7wyvJT.jpg",
+    "overview": "Fifty years old, three years past of unemployment, benefits decreasing very quickly... Gerard is at the end of the rope when a position is offered him in Indonesia. To win the favor of his new employer, Gerard invites him to dinner at home. Fatal Error ! Terrified at the idea of not being up to par, his wife Colette begs Alexandre, their neighbor to help. Communication guru, Alexander accepts the challenge and gives a makeover to the couple in twenty-four hours. Apartment, decoration, lifestyle, dinner menu, uniforms, culture... Everything !"
+  },
+  {
+    "title": "Conversations with My Gardener",
+    "year": "2007",
+    "tmdb": 4519,
+    "imdb": "tt0825244",
+    "release_date": "2007-06-06",
+    "poster_path": "/q3xyafrkgnAv0ErKJacHE5MA6ef.jpg",
+    "backdrop_path": "/ii3WNOfgEp62jkJAHAOJyYwRfhl.jpg",
+    "overview": "A successful artist, weary of Parisian life and on the verge of divorce, returns to the country to live in his childhood house. He needs someone to make a real vegetable garden again out of the wilderness it has become. The gardener happens to be a former schoolfriend. A warm, fruitful conversation starts between the two men."
+  },
+  {
+    "title": "My Best Friend",
+    "year": "2006",
+    "tmdb": 4516,
+    "imdb": "tt0778784",
+    "release_date": "2006-12-06",
+    "poster_path": "/hPqtG8L5fj9PUlW7Gldb218FyIc.jpg",
+    "backdrop_path": "/j7iQPc70Ox3Y8kxFbh0qE8psP97.jpg",
+    "overview": "Catherine refuses to believe that her business partner, the unlikeable François, has a best friend, so she challenges him to set up an introduction. Scrambling to find someone willing to pose as his best pal, François enlists the services of a charming taxi driver to play the part."
+  },
+  {
+    "title": "Napoleon and Me",
+    "year": "2006",
+    "tmdb": 24180,
+    "imdb": "tt0462002",
+    "release_date": "2006-10-13",
+    "poster_path": "/xPVy5Jp7Lwc9RSnYGlJHM2EoggK.jpg",
+    "backdrop_path": "/yQGE8e3YkQgVpCkWeidjXhzxOvt.jpg",
+    "overview": "Elba island, 1814. Martino is a young teacher, idealist and strongly anti Napoleon, in love with the beautiful and noble Baroness Emily. The young man finds himself serving as librarian to the Great Emperor in exile, whom he deeply hates, yet soon begins recording Napoleon's memoirs, getting to know and learning to value the man behind the myth. Among seductions and affairs, expectations and fears, he will craft a precise portrait that nevertheless will not manage to hide a final, inevitable, disappointment."
+  },
+  {
+    "title": "L'Entente cordiale",
+    "year": "2006",
+    "tmdb": 21774,
+    "imdb": "tt0450615",
+    "release_date": "2006-06-21",
+    "poster_path": "/iK5NMzfMZr5kM5mHT5RKYnbTdPK.jpg",
+    "backdrop_path": "/3Ye3tOBxRpKDqNaSqfkLlQXkP5Z.jpg",
+    "overview": "The upper-class secret agent teaming up accidentally with an easily-corrupted, sly interpreter..."
+  },
+  {
+    "title": "The Valet",
+    "year": "2006",
+    "tmdb": 21427,
+    "imdb": "tt0449851",
+    "release_date": "2006-03-29",
+    "poster_path": "/eVP6mln9G4dOoRRrQsY55T0sHOR.jpg",
+    "backdrop_path": "/57e5CjqUMIVOYP8hILJcCLDIpV.jpg",
+    "overview": "Caught by tabloid paparazzi with his mistress Elena, a famous and beautiful fashion model, billionaire Pierre Levasseur tries to avoid a divorce by inventing a preposterous lie. He uses the presence of a passerby in the photo to claim to his wife that it's not him Elena is seeing but the other man, one François Pignon. Pignon is a modest little man who works as a parking valet. To make the story convincing, Elena has to move in with Pignon."
+  },
+  {
+    "title": "Caché",
+    "year": "2005",
+    "tmdb": 445,
+    "imdb": "tt0387898",
+    "release_date": "2005-10-05",
+    "poster_path": "/vTzjRi0Uhy0tt3Rjw8SARZZJHlX.jpg",
+    "backdrop_path": "/mOYIUiSdoLWynoZIGDZSAAUZ3ss.jpg",
+    "overview": "As the host of a literary TV show, Georges begins receiving anonymously filmed videos of his family alongside cryptic, disturbing drawings, but as the tapes become increasingly intimate, they reveal a stalker who has known him for a very long time."
+  },
+  {
+    "title": "To Paint or Make Love",
+    "year": "2005",
+    "tmdb": 15702,
+    "imdb": "tt0431975",
+    "release_date": "2005-08-24",
+    "poster_path": "/upLGMmutOGS5FMKinRFxniaegjr.jpg",
+    "backdrop_path": "/dNJlzz6y9MkCgvqpoaDF2rOQrRi.jpg",
+    "overview": "An affluent, middle-aged couple's uneventful lives are forever changed when they move into an isolated house in the country and befriend an odd, younger couple."
+  },
+  {
+    "title": "One Stays, the Other Leaves",
+    "year": "2005",
+    "tmdb": 59565,
+    "imdb": "tt0423442",
+    "release_date": "2005-01-12",
+    "poster_path": "/ifkKLivTgs3TdygZL1LqRn4g9BH.jpg",
+    "backdrop_path": "/z6X3nUz1ZmbkRImUpvRcUMF9j7m.jpg",
+    "overview": "A story about two couples, longtime friends in which both husbands engage in long-term affairs and, as the title says, ultimately one remains with his wife and one makes a new life with another woman."
+  },
+  {
+    "title": "36th Precinct",
+    "year": "2004",
+    "tmdb": 7291,
+    "imdb": "tt0390808",
+    "release_date": "2004-11-24",
+    "poster_path": "/exD0FsvhkZqetOVOYrfGqwnc7nX.jpg",
+    "backdrop_path": "/tRZV0cmQUfKx0SL0L1z0Es7ZtK8.jpg",
+    "overview": "In Paris, two cops are competing for the vacant job of chief of police, in the middle of the search for a gang of violent thieves. The movie is directed by Olivier Marchal, a former police officer who spent 12 years with the French police before creating this story, taken in part from real events of the 1980s."
+  },
+  {
+    "title": "Under a False Name",
+    "year": "2004",
+    "tmdb": 64840,
+    "imdb": "tt0367098",
+    "release_date": "2004-11-10",
+    "poster_path": "/aRgedj6F6lrGjIWjjSiU43D0jZK.jpg",
+    "backdrop_path": "/sWvcp64os235jaqJLc70NAaf2Kw.jpg",
+    "overview": "A mysterious writer is involved in a love affair with his stepson's wife, leading to a web of intrigue and desire."
+  },
+  {
+    "title": "Nos amis les flics",
+    "year": "2004",
+    "tmdb": 40569,
+    "imdb": "tt0389225",
+    "release_date": "2004-06-18",
+    "poster_path": "/njz5tpvoP63XAwBgGq4hNO3ILwD.jpg",
+    "backdrop_path": "/xCL04YQyWmIv7rZj5d9LPIR5loT.jpg",
+    "overview": "Une bande de jeunes voyous inoffensifs vivote de petits coups. Après un braquage loupé, ils se trouvent dans l'impossibilité de régler leurs dettes au caïd du coin, qui, pour le rembourser, leur propose le cambriolage d'une fondation d'art moderne. Mais rien ne se passe comme prévu et tout s'enchaîne... mal."
+  },
+  {
+    "title": "After You",
+    "year": "2003",
+    "tmdb": 16932,
+    "imdb": "tt0344604",
+    "release_date": "2003-12-17",
+    "poster_path": "/ro2GcTo04JtEl62caPAjzVBPcPx.jpg",
+    "backdrop_path": "/yr90qtmsOMlR3NZ1ellJeRFoWFs.jpg",
+    "overview": "Antoine works in a bar in Paris. One evening on his way home from work, he intervenes when a man tries to commit suicide. He feels strangely guilty about having saved the man's life and constantly tries to help him, make things better. No matter what Antoine does, he can't get Louis's mind off Blanche, the woman of his dreams, his sole obsession, the reason why he wanted to die... Antoine decides to look for her, but doesn't let Louis know."
+  },
+  {
+    "title": "Small Cuts",
+    "year": "2003",
+    "tmdb": 47499,
+    "imdb": "tt0304547",
+    "release_date": "2003-02-12",
+    "poster_path": "/tBZCR3RA7iih9XU1aSuiyu2AfPs.jpg",
+    "backdrop_path": "/qk6j6oMCgAwK4TWe2jVMU1EHdFW.jpg",
+    "overview": "Bruno, a communist newspaper journalist, is suffering a mid-life crisis. Torn between his wife Gaëlle and his young girlfriend Nathalie, his political beliefs battered by the wind of history, Bruno seems to have lost his bearings."
+  },
+  {
+    "title": "The Adversary",
+    "year": "2002",
+    "tmdb": 52999,
+    "imdb": "tt0273069",
+    "release_date": "2002-08-28",
+    "poster_path": "/aszdSOpOskv1THDeOvLKiQQwdJc.jpg",
+    "backdrop_path": "/vpz2ifA14M68XOneyAXyO5vIIgW.jpg",
+    "overview": "Based on the 2000 book of the same name by Emmanuel Carrère, it is inspired by the real-life story of Jean-Claude Romand. L'Adversaire's protagonist Jean-Marc Faure (Auteuil) pursues an imaginary career as a doctor of medicine in a plot more closely based on Romand's life and Carrère's book than was Laurent Cantet's 2001 film L'Emploi du Temps. The film was nominated for a Palme d'Or at the 2002 Cannes Film Festival."
+  },
+  {
+    "title": "Vajont",
+    "year": "2001",
+    "tmdb": 48941,
+    "imdb": "tt0214265",
+    "release_date": "2001-10-12",
+    "poster_path": "/AcCuGPLFOngKufrMK6aMwXMC9ze.jpg",
+    "backdrop_path": "/6zj7HjsYW0M6okmt7ROeSQ2kA2p.jpg",
+    "overview": "On October 9th, 1963, at 10:39 pm, 260 million cubic meters of rock fell down from Mount Toc to the artificial lake formed by the Vajont dam, the higher dam in the world. The landslide formed a 250-meters wave and 50 million cubic meters of water completely destroied all the below towns, killing more than 2000 people. Planned by engineer Semenza, Vajont dam (263 meters) had to carry the electricity in all the houses of the country. Tina Merlin, a journalist from 'L'Unitá', tried for years to denounce the danger to build a dam near the Mount Toc and expecially to denounce all the omissions by the corrupted politicians and workers in charge of the dam construction. They preferred to trust in old geologist Dal Piaz instead to hear engineer Semenza young son's alarming analysis. No one seemed to understand the high danger until that October fatal night."
+  },
+  {
+    "title": "The Closet",
+    "year": "2001",
+    "tmdb": 11444,
+    "imdb": "tt0243493",
+    "release_date": "2001-01-17",
+    "poster_path": "/kNm5Jxr3iulG8tfYHqDD0ahODCw.jpg",
+    "backdrop_path": "/mrqrAmf19tgHGopeM6rLbsqJcZP.jpg",
+    "overview": "A man spreads the rumor of his fake homosexuality with the aid of his neighbor, to prevent his imminent firing at his work."
+  },
+  {
+    "title": "Sade",
+    "year": "2000",
+    "tmdb": 72356,
+    "imdb": "tt0217019",
+    "release_date": "2000-08-23",
+    "poster_path": "/mcr6I5KtSUrR1peEZ2EFotW6Hhx.jpg",
+    "backdrop_path": "/8iD2S2Y5HBRscKVffIR7sdTYf6k.jpg",
+    "overview": "A man prepares himself to be transferred to a detention center and rest home where he will relive one more time the highlights of his youth."
+  },
+  {
+    "title": "The Widow of Saint-Pierre",
+    "year": "2000",
+    "tmdb": 48217,
+    "imdb": "tt0191636",
+    "release_date": "2000-04-19",
+    "poster_path": "/dFQ2kQA9JlAIO0uL2KkrsmI4o2O.jpg",
+    "backdrop_path": "/32SGFXLRJLaPzz2Sec0M7CXMGd8.jpg",
+    "overview": "In 1850, on the isolated French island of Saint-Pierre, a murder shocks the natives. Two fishermen are arrested. One of them, Louis Ollivier, dies in custody. The other, Neel Auguste, is sentenced to death by the guillotine. The island is so small that it has neither a guillotine nor an executioner. While those are sent for Auguste is placed under the supervision of an army Captain."
+  },
+  {
+    "title": "The Escort",
+    "year": "1999",
+    "tmdb": 71632,
+    "imdb": "tt0187601",
+    "release_date": "1999-11-17",
+    "poster_path": "/os14mHUzmxbXk1uVr9eh3hzo2iQ.jpg",
+    "backdrop_path": "/abS5UZWLusamGYP00vr2V6Ti0p0.jpg",
+    "overview": "Fleeing from his wife in France to London, 45-year-old Pierre is barely able to support himself. He meets friendly Tom, who offers to help him make ends meet by working as a male escort."
+  },
+  {
+    "title": "The Lost Son",
+    "year": "1999",
+    "tmdb": 30964,
+    "imdb": "tt0144286",
+    "release_date": "1999-06-25",
+    "poster_path": "/3Et7EXmtQ4Ds2xc5hBPxuUwmSqX.jpg",
+    "backdrop_path": "/bPggCFClLVQPJO64NKBveyGZfiC.jpg",
+    "overview": "Xavier Lombard is a world-weary private eye in London, in exile from his native Paris; his best friend is Nathalie, a high-class call girl. He gets a call from an old friend from the Paris police department, now a businessman whose brother-in-law is missing. The missing man's parents hire Xavier over their daughter's objections, and quickly he finds himself in the realm of children's sexual slavery."
+  },
+  {
+    "title": "The Girl on the Bridge",
+    "year": "1999",
+    "tmdb": 10401,
+    "imdb": "tt0144201",
+    "release_date": "1999-03-31",
+    "poster_path": "/t5hKllCsmpWWA7XpxBXPjx0Gfct.jpg",
+    "backdrop_path": "/jlxwZ7XHK17U4sZUxmDP8iHThC8.jpg",
+    "overview": "It's night on a Paris bridge. A girl leans over Seine River with tears in her eyes and a violent yearning to drown her sorrows. Out of nowhere someone takes an interest in her. He is Gabor, a knife thrower who needs a human target for his show. The girl, Adele, has never been lucky and nowhere else to go. So she follows him. They travel along the northern bank of the Mediterranean to perform."
+  },
+  {
+    "title": "On Guard",
+    "year": "1997",
+    "tmdb": 40815,
+    "imdb": "tt0118756",
+    "release_date": "1997-12-03",
+    "poster_path": "/3tNL0uM1SNSfN2d1mKSBB5Ih6FH.jpg",
+    "backdrop_path": "/vQdHQip4YTxiOldOf2bhvNCMUJu.jpg",
+    "overview": "France, 17th century, during the reign of Louis XIII. When a dear friend, the Duke of Nevers, is treacherously assassinated by a powerful relative, a skilled swordsman, the noble Henri de Lagardère, seeks his rightful vengeance as he tries to protect the innocent life of the duke's last heir."
+  },
+  {
+    "title": "Lucie Aubrac",
+    "year": "1997",
+    "tmdb": 52366,
+    "imdb": "tt0119586",
+    "release_date": "1997-02-26",
+    "poster_path": "/jpgsYQRoNHnTX6jYtCCyjhzTuLR.jpg",
+    "backdrop_path": "/gpEzT7uwD6nOXVnbuyJtRE9fz2p.jpg",
+    "overview": "A love story or a tale of the resistance, this poignant movie tells both the haunting story of a French resistance cell in Lyon but also the love of Lucie Aubrac for her husband..."
+  },
+  {
+    "title": "Death in Therapy",
+    "year": "1996",
+    "tmdb": 159465,
+    "imdb": "tt0117303",
+    "release_date": "1996-10-30",
+    "poster_path": "/ty53gu5EeUf9Mv3gX0BqkN10ml9.jpg",
+    "backdrop_path": "/mUZaLJ4wiB5IeG02j4dvT11e9nk.jpg",
+    "overview": "Antoine Rivière, a highly-reputed psychoanalyst, is visited by a new patient, Edouard Berg. When Berg claims to have killed his own wife, the doctor suspects he is a compulsive liar. How could he know that he has been caught in a trap and it's already too late for escape?"
+  },
+  {
+    "title": "Thieves",
+    "year": "1996",
+    "tmdb": 49935,
+    "imdb": "tt0118100",
+    "release_date": "1996-08-21",
+    "poster_path": "/meeBmnlkMP8UhrPvZKv83jjhd2E.jpg",
+    "backdrop_path": "/qiGO31RIzndpoJbVfwUoDGFUGre.jpg",
+    "overview": "In the middle of the night, someone brings Ivan's body home to his wife and his young son. Flashbacks reveal the relationships among Ivan and his brother Alex, a cop with a cleanliness fetish; siblings Juliette and Jimmy, Ivan's partners in a seedy nightclub; the love triangle of Alex, Juliette, and Marie, a professor of philosophy; and of Alex and his nephew, Ivan's dour, stoic son. Ivan's death changes every relationship."
+  },
+  {
+    "title": "The Eighth Day",
+    "year": "1996",
+    "tmdb": 36998,
+    "imdb": "tt0116581",
+    "release_date": "1996-05-22",
+    "poster_path": "/cgpJTvFcd0NJyJRTKYaBoLMuqdW.jpg",
+    "backdrop_path": "/rQ0XmwWp9dwhnXNPlm6wN17mxoi.jpg",
+    "overview": "An unusual and wonderful friendship develops between a busy but unhappy salesman and a resident of a mental asylum."
+  },
+  {
+    "title": "Pereira Declares",
+    "year": "1995",
+    "tmdb": 47367,
+    "imdb": "tt0115479",
+    "release_date": "1995-04-06",
+    "poster_path": "/hcC09OL0ajVDYRFl38psXBfLx4x.jpg",
+    "backdrop_path": "/vosxmjlUPE2YgmsQSJGma1dnvlA.jpg",
+    "overview": "Lisbon, 1938. Mr. Pereira is the editor of the culture section of an evening paper. Although fascism is on the rise in Europe, like in nearby civil war Spain or even inside Portugal itself in the form of Salazar's regime, Pereira only concerns himself with writing bios and translating French novels. Things change after he hires a young writer as his assistant, getting to know also his girlfriend – both opponents to the regime – and reluctantly helps them when they begin to get in trouble for subversive activities. Eventually, he's forced to take a stand..."
+  },
+  {
+    "title": "A French Woman",
+    "year": "1995",
+    "tmdb": 183244,
+    "imdb": "tt0114790",
+    "release_date": "1995-03-14",
+    "poster_path": "/r6o9XB6ttit5KO6Ib3CKBDkrmfR.jpg",
+    "backdrop_path": "/yax779wlHwcQWeoZkLdD6ztccPR.jpg",
+    "overview": "Wed just as war breaks out, Jeanne hardly gets to know her military husband, Louis, before the debacle of 1940. While waiting for his return from a POW camp, Jeanne journeys through countless affairs with Louis' comrades- in-arms. Hoping to forget these wartime betrayls, Louis takes his wife and the infant twins he didn't father to Berlin, where she falls for Matthais, a sensitive German industrialist. When the Indochinese war sends Louis to Vietnam, Matthais follows Jeanne back to France. A subsequent move to Damascus where Louis is posted as military attache, fails to break their bond."
+  },
+  {
+    "title": "La Séparation",
+    "year": "1994",
+    "tmdb": 124475,
+    "imdb": "tt0111342",
+    "release_date": "1994-11-09",
+    "poster_path": "/vhW9qalMrIzuwGc7VcRuGlqSv8L.jpg",
+    "backdrop_path": "/sYJK8vCOLz5hLcZlwPT54nRt5iK.jpg",
+    "overview": "In Paris, a simple rejected gesture at a movie theater reveals growing cracks between Pierre and Anne. As they go about their daily lives, an unexplained distance threatens their relationship."
+  },
+  {
+    "title": "Queen Margot",
+    "year": "1994",
+    "tmdb": 10452,
+    "imdb": "tt0110963",
+    "release_date": "1994-05-13",
+    "poster_path": "/8uGkhBLiJMIkwohGPo3iB9AuwDg.jpg",
+    "backdrop_path": "/h0lGYUOxXKCM1W7cgvHN1UW1TC4.jpg",
+    "overview": "Paris, Kingdom of France, August 18, 1572. To avoid the outbreak of a religious war, the Catholic princess Marguerite de Valois, sister of the feeble King Charles IX, marries the Huguenot King Henry III of Navarre."
+  },
+  {
+    "title": "My Favorite Season",
+    "year": "1993",
+    "tmdb": 52873,
+    "imdb": "tt0107471",
+    "release_date": "1993-05-14",
+    "poster_path": "/mWQhnhvNo8B2WRZhvv9XxrA7HgF.jpg",
+    "backdrop_path": "/wFGZDBAmoAuHZMWg13K6bwZkYKd.jpg",
+    "overview": "Elderly woman Berthe leaves her house to live with her daughter Emilie. Emilie and her brother Antoine had a falling out three years ago and have not seen each other since, but Emilie invites him for Christmas. Memories will resurface and impact both Berthe's destiny and the strange relationship between Emilie and Antoine."
+  },
+  {
+    "title": "A Heart in Winter",
+    "year": "1992",
+    "tmdb": 48150,
+    "imdb": "tt0105682",
+    "release_date": "1992-09-02",
+    "poster_path": "/nwYKkV2SbrAfZEFOfafnPYZiFr1.jpg",
+    "backdrop_path": "/rWkuu1S6oAE6OPA1KtwdXP61NFL.jpg",
+    "overview": "Beautiful violin virtuoso Camille has two obsessions: the music of Ravel, and a friend of her husband's who crafts violins. But his heart seems to be as cold as her playing is passionate."
+  },
+  {
+    "title": "My Life Is Hell",
+    "year": "1991",
+    "tmdb": 4272,
+    "imdb": "tt0102367",
+    "release_date": "1991-12-04",
+    "poster_path": "/neXNMggGa43m3lBkX65EOaj2WbR.jpg",
+    "backdrop_path": "/dPowaqEmTNM5NzwCRL1WLHTQydE.jpg",
+    "overview": "The naive and self-conscious Leah mistakenly signs a pact with the devil Abargadon. But she's on Heaven's hit list, so the Archangel Gabriel intervenes to bring about the demon's demise. But Leah begins to find Abargadon attractive and not so bad. She decides to save his soul."
+  },
+  {
+    "title": "The Elegant Criminal",
+    "year": "1990",
+    "tmdb": 70458,
+    "imdb": "tt0099965",
+    "release_date": "1990-12-19",
+    "poster_path": "/sdyPm1TaaB3EOttjtjj20rOjbHK.jpg",
+    "backdrop_path": "/6phDkoTn11w0wimfQZw1qIFG51L.jpg",
+    "overview": "On 9 January 1836, Pierre Lacenaire goes to the guillotine, a murderer and a thief. He gives Allard, a police inspector, his life story, written while awaiting execution. He also asks Allard to care for Hermine, a lass to whom he has been guardian for more than ten years. In flashbacks, from the prison as Lacenaire writes, from Allard's study as he and Hermine read, and from other readers' memory after the book is published, we see Lacenaire's childhood as he stands up to bullies, including priests, his youthful thieving, his first murder, his brief army career, his seduction of a princess, and his affair with Avril, a young man who dies beside him."
+  },
+  {
+    "title": "Romuald & Juliette",
+    "year": "1989",
+    "tmdb": 11480,
+    "imdb": "tt0098220",
+    "release_date": "1989-03-22",
+    "poster_path": "/p5tziFYNFJEaybMhpCP20m8G317.jpg",
+    "backdrop_path": "/tZINo8RkwoeKPBIkGmV8bn4fgv3.jpg",
+    "overview": "A company president gets framed with a food-poisoning scandal and the only person who can help him is the evening cleaning-woman, who always seems to be at the right place at the right time."
+  },
+  {
+    "title": "A Few Days with Me",
+    "year": "1988",
+    "tmdb": 2025,
+    "imdb": "tt0095943",
+    "release_date": "1988-08-14",
+    "poster_path": "/pDSVwVnXZGlI5g8RbqMWb36jOf2.jpg",
+    "backdrop_path": "/hMmhuLa1h6bUghyYF8pcigoSMQ6.jpg",
+    "overview": "After being discharged from a mental institution, a man is tasked by his mother to revive a struggling supermarket in Limoges. He must navigate unexpected responsibilities and the challenges of managing the store's staff."
+  },
+  {
+    "title": "Manon of the Spring",
+    "year": "1986",
+    "tmdb": 4481,
+    "imdb": "tt0091480",
+    "release_date": "1986-11-19",
+    "poster_path": "/1qpu6Zc1PSDL3UbDNIZJ6YuhJDW.jpg",
+    "backdrop_path": "/4JqXcnG6v8eHzeib2sAOLwTLVds.jpg",
+    "overview": "In this, the sequel to Jean de Florette, Manon has grown into a beautiful young shepherdess living in the idyllic Provencal countryside. She plots vengeance on the men who greedily conspired to acquire her father's land years earlier."
+  },
+  {
+    "title": "Jean de Florette",
+    "year": "1986",
+    "tmdb": 4480,
+    "imdb": "tt0091288",
+    "release_date": "1986-08-27",
+    "poster_path": "/atjyDRdOnOi2S28X3mNtJ7CQmFj.jpg",
+    "backdrop_path": "/qNBxyt60hnzBRSHo1uRkRU34fYE.jpg",
+    "overview": "In a rural French village, an old man and his only remaining relative cast their covetous eyes on an adjoining vacant property. They need its spring water for growing their flowers, and are dismayed to hear that the man who has inherited it is moving in. They block up the spring and watch as their new neighbour tries to keep his crops watered from wells far afield through the hot summer. Though they see his desperate efforts are breaking his health and his wife and daughter's hearts, they think only of getting the water."
+  },
+  {
+    "title": "The Nonentity",
+    "year": "1986",
+    "tmdb": 63972,
+    "imdb": "tt0091715",
+    "release_date": "1986-08-13",
+    "poster_path": "/k5MgS8Ryjq9Sm4BvqyIptWbQzRr.jpg",
+    "backdrop_path": "/6O6XmoGPTDh2TnZN0qbT2iNqANu.jpg",
+    "overview": "Each evening, four men – a doctor, a journalist, a professor and a merchant – meet up in a deserted bar to play cards.  As they play, the bar’s owner, her downtrodden barman (nicknamed “le paltoquet”) and a strange woman in white watch from a distance.  One night, the card game is disturbed when a police inspector suddenly appears and declares that a dead body has been found nearby.  Certain that one of the four men is the murderer, the inspector starts his investigation.  All the evidence suggests that the doctor did the deed, but we soon learn that nothing is quite what it seems…"
+  },
+  {
+    "title": "Love on the Quiet",
+    "year": "1985",
+    "tmdb": 118694,
+    "imdb": "tt0088715",
+    "release_date": "1985-02-27",
+    "poster_path": "/6g8pes3g3dHWQwM7crr80mn5wNQ.jpg",
+    "backdrop_path": "/iqxBcCAdsVp316vt2TXbBZZ3jPr.jpg",
+    "overview": "A lawyer hires a call girl after learning his wife has invited her lover to move in; the husband and wife separate and the two new couples live side-by-side without issue - until an ex-boyfriend shows up and things start to go wrong."
+  },
+  {
+    "title": "The Syringe",
+    "year": "1984",
+    "tmdb": 259980,
+    "imdb": "tt0086910",
+    "release_date": "1984-11-14",
+    "poster_path": "/3of68DHvGmht3CcCPDsbksFZKLX.jpg",
+    "backdrop_path": "/6q9yZiAreCKv8w1XbvA2Uys6cOB.jpg",
+    "overview": "Good dope is becoming rare in the North of Paris. Drugstores are being raided by junkies and gangs are nervous, fighting each others: the 'Viets', the 'Blackies', the 'Arabs', the neo-nazis 'Justiciers' and some mean gays.  Vincent (Daniel Auteuil) is the good cop coming from Marseilles where he was a gangster. He's a soft method guy but also kicks assses hard and throw lethal dialog lines when needed. With the precious help of 'l'Arbalète'* (Marisa Berenson**), a tox' prostitute ex-member of Vincent's former gang, he will try to put order in that mess. There's also a violent and racist cop (Marcel Bozzuffi), Algeria veteran with hard methods, whose role could be more than to protect and to serve."
+  },
+  {
+    "title": "Wild Animals",
+    "year": "1984",
+    "tmdb": 270447,
+    "imdb": "tt0085528",
+    "release_date": "1984-04-18",
+    "poster_path": "/251B88YtmF98HNIVRr039mu765P.jpg",
+    "backdrop_path": "/kLtskuXfODuWeUlgWg5NQ4zA67X.jpg",
+    "overview": "Berg and Bela are married stunt drivers, but one night Bela dies in an accident. Jaded and reclusive, Berg becomes a nighttime security guard where he befriends a young woman, Mimi, who works nights too. Soon a shadowy figure from Bela's past comes into Berg and Mimi's lives. Berg is forced to protect Mimi and seems responsible for a murder, but the man from Bela's past who caused her so much pain won't stop until he sees Berg suffer as much as Bela did."
+  },
+  {
+    "title": "The Informer",
+    "year": "1983",
+    "tmdb": 327221,
+    "imdb": "tt0085725",
+    "release_date": "1983-04-06",
+    "poster_path": "/uIIJxebJrFnobz43MFqqqHDtYEt.jpg",
+    "backdrop_path": "/cE9zrBlLxqahr1p2DC4X0NSYg3x.jpg",
+    "overview": "The girlfriend of an associate of a gangland boss, is persuaded by a police detective to inform about her lover's associates."
+  },
+  {
+    "title": "Will the High Salaried Workers Raise Their Hands!",
+    "year": "1982",
+    "tmdb": 78803,
+    "imdb": "tt0084562",
+    "release_date": "1982-11-03",
+    "poster_path": "/mydj4ByyzqqB6LRs1qPnxbz2EMv.jpg",
+    "backdrop_path": "/nadrcleEzttV4UhU9EU8OnrWGIs.jpg",
+    "overview": "The cynical boss of a big insurance agency invites his top-salary employees to spend a week-end in his country house. A modest clerical worker, also invited, discovers the hidden reason for this party - and decides to take advantage of it."
+  },
+  {
+    "title": "For 200 Grand, You Get Nothing Now",
+    "year": "1982",
+    "tmdb": 59455,
+    "imdb": "tt0084526",
+    "release_date": "1982-05-12",
+    "poster_path": "/9ZHuDYS8RBnjc3ZC67FNMruh25F.jpg",
+    "backdrop_path": "/88f2CKe4v44klw2T3KCD5vexOqy.jpg",
+    "overview": "After getting screwed over by life (again), two losers decide that enough is enough. Using stolen ski masks and stolen toy guns, they take hostages in their local bank, holding them for ransom. Things go well until the hostages learn what's going on, and demand a piece of the action for themselves."
+  },
+  {
+    "title": "Keeping Everyone Up",
+    "year": "1982",
+    "tmdb": 215673,
+    "imdb": "tt0083157",
+    "release_date": "1982-03-30",
+    "poster_path": "/smQxSWZxmEiYDOzOM5d9jWI94Gh.jpg",
+    "backdrop_path": "/p4dkKgBNU9q5VSB09hNmOie0z52.jpg",
+    "overview": "A homeless street musician meets an attractive woman by chance and keeps following her until he persuades her to let him stay in her place."
+  },
+  {
+    "title": "Les Sous-Doués En Vacances",
+    "year": "1982",
+    "tmdb": 51925,
+    "imdb": "tt0083110",
+    "release_date": "1982-03-10",
+    "poster_path": "/tUPJoNHTb1pCNnnyeoQBU5zphev.jpg",
+    "backdrop_path": "/ahzJ24TiUeU2R1zd2d2cqxyN73I.jpg",
+    "overview": "A group of friends are planning how to spend their summer vacation. One plans to go to the Seychelles with his American girlfriend. At the airport she dumps him for another guy. He has no money so he steals a backpack and goes camping. Somehow he meets a pretty girl and convinces her to share his tent. But a famous singer sees the girl and wants her too. He convinces the luckless guy to act like a fool and the girl leaves him and goes with the singer to the French Rivera."
+  },
+  {
+    "title": "Men Prefer Fat Girls",
+    "year": "1981",
+    "tmdb": 81024,
+    "imdb": "tt0082524",
+    "release_date": "1981-08-19",
+    "poster_path": "/7UJySf38EIVVBlfi5nL4S5vwBlB.jpg",
+    "backdrop_path": "/dpYqRYqKYv7w9CGxDRdb9XEdLby.jpg",
+    "overview": "Lydie, a physically unattractive young woman, is brutally dumped by her fiancé when she had just acquired the lease of an apartment to live with him."
+  },
+  {
+    "title": "Clara and the Why Notes",
+    "year": "1981",
+    "tmdb": 49959,
+    "imdb": "tt0080541",
+    "release_date": "1981-01-14",
+    "poster_path": "/aH3XpRBJqDYnpYkd8MOgbE7RMnQ.jpg",
+    "backdrop_path": "/xm5TwpzDzKX6VXBB0EA8FVtKXwH.jpg",
+    "overview": "In 1981, in Grenoble, Mickey, Bertrand, Frédéric, Charles, Louise, and Aimée—brought together by a shared desire to make music—are the members of a band called the “Why Notes.” During a wedding ceremony in a church where Charles is playing the harmonium for the occasion, Bertrand, who has come to join him, notices the groom interrupting the ceremony and running away. A few hours later, just as the band is about to leave for a concert in Paris at the high school they attended, Bertrand runs into Clara, who suggests they run away together and then disappears... Bertrand, completely captivated by Clara, leaves the band and sets off in search of her... in Paris."
+  },
+  {
+    "title": "The Lady Banker",
+    "year": "1980",
+    "tmdb": 4370,
+    "imdb": "tt0080415",
+    "release_date": "1980-08-27",
+    "poster_path": "/scH4ltzCx8DqqB5AXERbQdq22Ou.jpg",
+    "backdrop_path": "/8KooLwHzZ4oGXiesTxqXMKJby09.jpg",
+    "overview": "Ambitious Emma Eckhert successfully makes her way into a world previously reserved for men: that of high finance. She quickly becomes popular with small savers, but leads a scandalous life that will cost her."
+  },
+  {
+    "title": "The Under-Gifted",
+    "year": "1980",
+    "tmdb": 60175,
+    "imdb": "tt0081541",
+    "release_date": "1980-04-30",
+    "poster_path": "/6lw59oTZ0nCPmjYzxwM50vo0aGE.jpg",
+    "backdrop_path": "/v6pxOOj17l2BcrRUKUm7nL3tMzS.jpg",
+    "overview": "The story centers around a graduating class of \"less-gifted\" students in a private Versailles high school. Only a miracle has brought the students this far along, and after a practical joke misfires and the whole school is dynamited, the students are in deep trouble. They have to present themselves in court for their punishment and it could not be worse: If they don't pass their high-school graduation exams, they go to prison!"
+  },
+  {
+    "title": "Dumb But Disciplined",
+    "year": "1979",
+    "tmdb": 286658,
+    "imdb": "tt0078921",
+    "release_date": "1979-08-21",
+    "poster_path": "/9mOjjJPHCnLD9uLoSExqWxFQkzF.jpg",
+    "backdrop_path": "/rslMjGCvCFku8yoGd441GKgDBEa.jpg",
+    "overview": "Jacques does his military service. Shy, round and clumsy, he is forced to agree to be the driver of a special ambulance."
+  },
+  {
+    "title": "Us Two",
+    "year": "1979",
+    "tmdb": 76348,
+    "imdb": "tt0080184",
+    "release_date": "1979-05-23",
+    "poster_path": "/brtJa4LvmyjjMHe2csyFXf0rKvj.jpg",
+    "backdrop_path": "/pf9pE9dlEUckD4wAhqtOEcGrBxg.jpg",
+    "overview": "Françoise has gone into business seducing men whose wives want to divorce them, and who need incriminating evidence against them. In addition, she has a little blackmail operation going on on the side with politicians who can't afford a scandal. She got started on this business after she was raped, and hasn't looked back since. Now the police are on her trail, and she avails herself of the services of a couple who make a profession of hiding wanted criminals. At the hideout, she meets Simon, a second-generation mobster. As the police close in, Françoise and Simon go on the run together, pulling off occasional heists for operating money. Before long, they have also fallen in love."
+  },
+  {
+    "title": "Heroes Are Not Wet Behind the Ears",
+    "year": "1979",
+    "tmdb": 50216,
+    "imdb": "tt0077709",
+    "release_date": "1979-01-17",
+    "poster_path": "/q1OakGG3gwQKrLfhHHkS8F3VuHo.jpg",
+    "backdrop_path": "/t73KZtozMFRX00wgFXX52W4VnSn.jpg",
+    "overview": "Two brothers are fighting for a one girl attention..."
+  },
+  {
+    "title": "Rape of Love",
+    "year": "1978",
+    "tmdb": 186745,
+    "imdb": "tt0074141",
+    "release_date": "1978-01-10",
+    "poster_path": "/qVGL9xgGCzXtRwexUTmpz7z1MVg.jpg",
+    "backdrop_path": "/xGJT18qN8lzELAnHRyfoe1vLTiI.jpg",
+    "overview": "Nicole, nurse in Grenoble, is raped one night by four men. Deeply scarred, emotionally and physically, she thinks she will never recover from the trauma. Following a friend's advice, she decides to file a lawsuit."
+  },
+  {
+    "title": "Let's Make a Dirty Movie",
+    "year": "1976",
+    "tmdb": 79633,
+    "imdb": "tt0072669",
+    "release_date": "1976-02-17",
+    "poster_path": "/gcdWBxaUBI5sTPQXjUqGPF5rQYM.jpg",
+    "backdrop_path": "/dghx8TlThvF576nsj4lpRKArQ5Z.jpg",
+    "overview": "A bumbling film crew attempts to make a porno movie."
+  }
+]
