@@ -1,0 +1,404 @@
+[
+  {
+    "title": "Les Misérables",
+    "year": "2026",
+    "tmdb": 1241803,
+    "imdb": "tt35518109"
+  },
+  {
+    "title": "Couture",
+    "year": "2026",
+    "tmdb": 1390382,
+    "imdb": "tt34688195"
+  },
+  {
+    "title": "The Quiet Son",
+    "year": "2025",
+    "tmdb": 1118848,
+    "imdb": "tt28601337"
+  },
+  {
+    "title": "Cross Away",
+    "year": "2024",
+    "tmdb": 1300331,
+    "imdb": "tt33996092"
+  },
+  {
+    "title": "The Second Act",
+    "year": "2024",
+    "tmdb": 1161108,
+    "imdb": "tt30784256"
+  },
+  {
+    "title": "Like a Son",
+    "year": "2024",
+    "tmdb": 1089309,
+    "imdb": "tt28636981"
+  },
+  {
+    "title": "Both Sides of the Blade",
+    "year": "2022",
+    "tmdb": 768757,
+    "imdb": "tt13535920"
+  },
+  {
+    "title": "Another World",
+    "year": "2022",
+    "tmdb": 664506,
+    "imdb": "tt15115102"
+  },
+  {
+    "title": "Undercover",
+    "year": "2022",
+    "tmdb": 661605,
+    "imdb": "tt8415986"
+  },
+  {
+    "title": "Titane",
+    "year": "2021",
+    "tmdb": 630240,
+    "imdb": "tt10944760"
+  },
+  {
+    "title": "My Cousin",
+    "year": "2020",
+    "tmdb": 601297,
+    "imdb": "tt10023150"
+  },
+  {
+    "title": "Casanova, Last Love",
+    "year": "2019",
+    "tmdb": 504605,
+    "imdb": "tt9105628"
+  },
+  {
+    "title": "At War",
+    "year": "2018",
+    "tmdb": 485162,
+    "imdb": "tt7555774"
+  },
+  {
+    "title": "The Apparition",
+    "year": "2018",
+    "tmdb": 482712,
+    "imdb": "tt6559390"
+  },
+  {
+    "title": "Rodin",
+    "year": "2017",
+    "tmdb": 445768,
+    "imdb": "tt5771710"
+  },
+  {
+    "title": "The White Knights",
+    "year": "2015",
+    "tmdb": 334918,
+    "imdb": "tt3597510"
+  },
+  {
+    "title": "The Measure of a Man",
+    "year": "2015",
+    "tmdb": 329712,
+    "imdb": "tt4428814"
+  },
+  {
+    "title": "Diary of a Chambermaid",
+    "year": "2015",
+    "tmdb": 320003,
+    "imdb": "tt2711898"
+  },
+  {
+    "title": "Mea Culpa",
+    "year": "2014",
+    "tmdb": 248611,
+    "imdb": "tt3112654"
+  },
+  {
+    "title": "Bastards",
+    "year": "2013",
+    "tmdb": 179109,
+    "imdb": "tt2821088"
+  },
+  {
+    "title": "Augustine",
+    "year": "2012",
+    "tmdb": 127856,
+    "imdb": "tt2098628"
+  },
+  {
+    "title": "A Few Hours of Spring",
+    "year": "2012",
+    "tmdb": 121702,
+    "imdb": "tt1899270"
+  },
+  {
+    "title": "All Our Desires",
+    "year": "2011",
+    "tmdb": 71179,
+    "imdb": "tt1942120"
+  },
+  {
+    "title": "Pater",
+    "year": "2011",
+    "tmdb": 78162,
+    "imdb": "tt1906446"
+  },
+  {
+    "title": "The Moon Child",
+    "year": "2011",
+    "tmdb": 58576,
+    "imdb": "tt1798194"
+  },
+  {
+    "title": "Mademoiselle Chambon",
+    "year": "2009",
+    "tmdb": 34013,
+    "imdb": "tt1285246"
+  },
+  {
+    "title": "Welcome",
+    "year": "2009",
+    "tmdb": 15712,
+    "imdb": "tt1314280"
+  },
+  {
+    "title": "Anything for Her",
+    "year": "2008",
+    "tmdb": 14556,
+    "imdb": "tt1217637"
+  },
+  {
+    "title": "Mes amis, mes amours",
+    "year": "2008",
+    "tmdb": 14659,
+    "imdb": "tt0827192"
+  },
+  {
+    "title": "Dragon Hunters",
+    "year": "2008",
+    "tmdb": 10800,
+    "imdb": "tt0944834"
+  },
+  {
+    "title": "Those Who Remain",
+    "year": "2007",
+    "tmdb": 71577,
+    "imdb": "tt0969701"
+  },
+  {
+    "title": "Could This Be Love?",
+    "year": "2007",
+    "tmdb": 2065,
+    "imdb": "tt0488565"
+  },
+  {
+    "title": "Charlie Says",
+    "year": "2006",
+    "tmdb": 68944,
+    "imdb": "tt0444418"
+  },
+  {
+    "title": "The Airplane",
+    "year": "2005",
+    "tmdb": 56371,
+    "imdb": "tt0417453"
+  },
+  {
+    "title": "The Moustache",
+    "year": "2005",
+    "tmdb": 16998,
+    "imdb": "tt0428856"
+  },
+  {
+    "title": "Confidence Reigns",
+    "year": "2004",
+    "tmdb": 40225,
+    "imdb": "tt0381104"
+  },
+  {
+    "title": "The Cost of Living",
+    "year": "2003",
+    "tmdb": 54157,
+    "imdb": "tt0348572"
+  },
+  {
+    "title": "Only Girls",
+    "year": "2003",
+    "tmdb": 51860,
+    "imdb": "tt0336432"
+  },
+  {
+    "title": "Friday Night",
+    "year": "2002",
+    "tmdb": 45044,
+    "imdb": "tt0295743"
+  },
+  {
+    "title": "The Warrior's Brother",
+    "year": "2002",
+    "tmdb": 67739,
+    "imdb": "tt0287448"
+  },
+  {
+    "title": "Chaos",
+    "year": "2001",
+    "tmdb": 44164,
+    "imdb": "tt0265116"
+  },
+  {
+    "title": "Day Off",
+    "year": "2001",
+    "tmdb": 77280,
+    "imdb": "tt0244071"
+  },
+  {
+    "title": "Keep It Quiet",
+    "year": "1999",
+    "tmdb": 77938,
+    "imdb": "tt0209223"
+  },
+  {
+    "title": "My Little Business",
+    "year": "1999",
+    "tmdb": 65081,
+    "imdb": "tt0210163"
+  },
+  {
+    "title": "Belle Maman",
+    "year": "1999",
+    "tmdb": 55705,
+    "imdb": "tt0181310"
+  },
+  {
+    "title": "The School of Flesh",
+    "year": "1998",
+    "tmdb": 77936,
+    "imdb": "tt0157208"
+  },
+  {
+    "title": "Paparazzi",
+    "year": "1998",
+    "tmdb": 62134,
+    "imdb": "tt0133314"
+  },
+  {
+    "title": "Seventh Heaven",
+    "year": "1997",
+    "tmdb": 98505,
+    "imdb": "tt0124115"
+  },
+  {
+    "title": "Fred",
+    "year": "1997",
+    "tmdb": 90430,
+    "imdb": "tt0119150"
+  },
+  {
+    "title": "La Belle Verte",
+    "year": "1996",
+    "tmdb": 25518,
+    "imdb": "tt0115650"
+  },
+  {
+    "title": "Strangled Lives",
+    "year": "1996",
+    "tmdb": 123495,
+    "imdb": "tt0118097"
+  },
+  {
+    "title": "All That... for This?!",
+    "year": "1993",
+    "tmdb": 33489,
+    "imdb": "tt0108370"
+  },
+  {
+    "title": "The Crisis",
+    "year": "1992",
+    "tmdb": 56947,
+    "imdb": "tt0104025"
+  },
+  {
+    "title": "The Beautiful Story",
+    "year": "1992",
+    "tmdb": 45777,
+    "imdb": "tt0103790"
+  },
+  {
+    "title": "Netchayev is Back",
+    "year": "1991",
+    "tmdb": 384270,
+    "imdb": "tt0102524"
+  },
+  {
+    "title": "Gaspard and Robinson",
+    "year": "1990",
+    "tmdb": 58454,
+    "imdb": "tt0099635"
+  },
+  {
+    "title": "There Were Days... and Moons",
+    "year": "1990",
+    "tmdb": 51329,
+    "imdb": "tt0099827"
+  },
+  {
+    "title": "C'est La Vie",
+    "year": "1990",
+    "tmdb": 77672,
+    "imdb": "tt0099200"
+  },
+  {
+    "title": "The Student",
+    "year": "1988",
+    "tmdb": 52286,
+    "imdb": "tt0096523"
+  },
+  {
+    "title": "A Few Days with Me",
+    "year": "1988",
+    "tmdb": 2025,
+    "imdb": "tt0095943"
+  },
+  {
+    "title": "A Man in Love",
+    "year": "1987",
+    "tmdb": 80605,
+    "imdb": "tt0094208"
+  },
+  {
+    "title": "Last Summer in Tangiers",
+    "year": "1987",
+    "tmdb": 64408,
+    "imdb": "tt0090932"
+  },
+  {
+    "title": "Half Moon Street",
+    "year": "1986",
+    "tmdb": 36372,
+    "imdb": "tt0091164"
+  },
+  {
+    "title": "Betty Blue",
+    "year": "1986",
+    "tmdb": 11986,
+    "imdb": "tt0090563"
+  },
+  {
+    "title": "Cop's Honor",
+    "year": "1985",
+    "tmdb": 170033,
+    "imdb": "tt0089776"
+  },
+  {
+    "title": "Our Story",
+    "year": "1984",
+    "tmdb": 58619,
+    "imdb": "tt0087818"
+  },
+  {
+    "title": "L'Addition",
+    "year": "1984",
+    "tmdb": 225977,
+    "imdb": "tt0086852"
+  }
+]

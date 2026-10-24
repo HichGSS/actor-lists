@@ -1,0 +1,26 @@
+{
+  "actors": [
+    {
+      "name": "Swann Arlaud",
+      "tmdb_id": 145120,
+      "mdblist_list_name": "Swann Arlaud",
+      "max_cast_order": 15,
+      "min_vote_count": 5,
+      "exclude_genre_ids": [99],
+      "include_upcoming": true,
+      "exclude_tmdb_ids": [],
+      "include_tmdb_ids": []
+    },
+    {
+      "name": "Vincent Lindon",
+      "tmdb_id": 5443,
+      "mdblist_list_name": "Vincent Lindon",
+      "max_cast_order": 15,
+      "min_vote_count": 5,
+      "exclude_genre_ids": [99],
+      "include_upcoming": true,
+      "exclude_tmdb_ids": [],
+      "include_tmdb_ids": []
+    }
+  ]
+}
