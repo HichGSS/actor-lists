@@ -113,17 +113,19 @@ Les champs omis prennent leurs valeurs par défaut (`max_cast_order` 15, `min_vo
 
 ## Addon Omni « Acteurs » (expérimental)
 
-En plus de MDBList, le script génère un **addon Stremio statique** dans le dossier `docs/` (catalogue « Acteurs » dont les tuiles sont les bannières d'acteurs ; ouvrir une tuile affiche les films de l'acteur).
+En plus de MDBList, le script génère un **addon Stremio statique** dans le dossier `docs/` (version 1.1.0).
 
 1. Dans `config.json`, la clé `github_repo` (ex. `"HichGSS/actor-lists"`) doit pointer vers votre dépôt, sinon l'addon n'est pas généré.
 2. Activez GitHub Pages : **Settings → Pages → Source : Deploy from a branch → branche `main`, dossier `/docs`**.
 3. Après un passage du workflow (qui commit `docs/`), installez l'addon dans Omni avec l'adresse : `https://hichgss.github.io/actor-lists/manifest.json`
 
-Deux catalogues sont proposés, car on ignore quel type de fiche Omni gère le mieux :
+Deux catalogues sont proposés :
 
-- **Acteurs** (type film) : liste des films, du plus récent au plus ancien ;
-- **Acteurs (test serie)** (type série) : les films sont présentés comme des épisodes de la saison 1, du plus ancien (épisode 1) au plus récent.
+- **Acteurs** (type série) : les tuiles sont les bannières d'acteurs ; ouvrir une tuile affiche les films comme des épisodes de la saison 1, du plus ancien au plus récent ;
+- **Filmographies** (type film) : dans l'écran **Découvrir** d'Omni, choisissez le catalogue « Filmographies » puis l'acteur dans le filtre de genre pour obtenir une grille d'affiches (du plus récent au plus ancien).
 
-Testez les deux et gardez celui qui fonctionne dans Omni (masquez/supprimez l'autre).
+Sur la page d'un acteur, un lien « Voir en affiches » (catégorie Filmographie) pointe vers cette grille ; selon Omni, il peut ne pas être cliquable.
+
+Après cette mise à jour (version 1.1.0), **réinstallez l'addon** dans Omni pour que les nouveaux catalogues apparaissent. L'ancien catalogue film « Acteurs » a été supprimé.
 
 Choisir un film de la liste dépend de l'addon de streams (AIOStreams) : Omni lui envoie l'identifiant IMDb du film (`tt…`) et AIOStreams renvoie les sources.

@@ -215,29 +215,52 @@ class AddonTests(unittest.TestCase):
             sync.generate_addon(self.CONFIG, self.results(), Path(d))
             m = self.load(d, "manifest.json")
             self.assertEqual(m["id"], "community.actorlists.hichgss")
-            self.assertEqual([c["id"] for c in m["catalogs"]], ["actorlists-movie", "actorlists-series"])
+            self.assertEqual(m["version"], "1.1.0")
+            self.assertEqual(m["types"], ["movie", "series"])
+            self.assertEqual(m["resources"][1], {"name": "meta", "types": ["series"],
+                                                 "idPrefixes": ["actorlists-"]})
+            self.assertEqual(m["catalogs"], [
+                {"type": "series", "id": "actorlists-series", "name": "Acteurs"},
+                {"type": "movie", "id": "actorlists-films", "name": "Filmographies",
+                 "extra": [{"name": "genre", "isRequired": True,
+                            "options": ["Vincent Lindon", "Swann Arlaud"]}],
+                 "extraSupported": ["genre"], "extraRequired": ["genre"]}])
             self.assertEqual(m["idPrefixes"], ["actorlists-"])
             self.assertTrue(m["logo"].endswith("/banners/vincent-lindon_poster.jpg"))
             self.assertTrue((Path(d) / ".nojekyll").exists())
             cat = self.load(d, "catalog/series/actorlists-series.json")["metas"]
             self.assertEqual([c["id"] for c in cat],
                              ["actorlists-series-vincent-lindon", "actorlists-series-swann-arlaud"])
+            self.assertNotIn("links", cat[0])
             self.assertEqual(cat[0]["description"], "Filmographie de Vincent Lindon (4 films)")
             self.assertEqual(cat[0]["background"],
                              "https://raw.githubusercontent.com/HichGSS/actor-lists/main/banners/vincent-lindon.jpg")
+            self.assertFalse((Path(d) / "meta/movie").exists())
+            self.assertFalse((Path(d) / "catalog/movie/actorlists-movie.json").exists())
 
-    def test_movie_order_and_missing_imdb(self):
+    def test_genre_file(self):
+        films = self.desired()
+        films[1]["overview"] = "Resume"
+        res = [{"name": "Vincent Lindon", "slug": "vincent-lindon", "desired": films}]
         with tempfile.TemporaryDirectory() as d:
-            sync.generate_addon(self.CONFIG, self.results(), Path(d))
-            meta = self.load(d, "meta/movie/actorlists-movie-vincent-lindon.json")["meta"]
-            self.assertEqual([v["id"] for v in meta["videos"]], ["tt4", "tt2", "tt1", "tt5"])
-            self.assertNotIn("episode", meta["videos"][0])
-            self.assertNotIn("released", meta["videos"][0])
-            self.assertEqual(meta["videos"][1]["released"], "2022-03-03T00:00:00.000Z")
-            self.assertEqual(meta["videos"][1]["title"], "Film 2 (2022)")
-            self.assertEqual(meta["videos"][1]["thumbnail"], "https://image.tmdb.org/t/p/w500/p2.jpg")
+            sync.generate_addon(self.CONFIG, res, Path(d))
+            metas = self.load(d, "catalog/movie/actorlists-films/genre=Vincent Lindon.json")["metas"]
+            self.assertEqual([m["id"] for m in metas], ["tt4", "tt2", "tt1", "tt5"])  # tt3 sans imdb
+            self.assertEqual(metas[0], {"id": "tt4", "type": "movie", "name": "Film 4",
+                                        "poster": "https://image.tmdb.org/t/p/w500/p4.jpg"})
+            self.assertEqual(metas[1], {"id": "tt2", "type": "movie", "name": "Film 2",
+                                        "poster": "https://image.tmdb.org/t/p/w500/p2.jpg",
+                                        "releaseInfo": "2022", "description": "Resume"})
 
-    def test_series_numbering_chronological(self):
+    def test_genre_file_skipped_for_bad_name(self):
+        cfg = {"github_repo": "HichGSS/actor-lists", "actors": [{"name": "A/B"}]}
+        res = [{"name": "A/B", "slug": "a-b", "desired": self.desired()}]
+        with tempfile.TemporaryDirectory() as d, mock.patch("builtins.print") as pr:
+            sync.generate_addon(cfg, res, Path(d))
+            self.assertFalse(list((Path(d) / "catalog/movie").rglob("genre=*")))
+            self.assertTrue(any("A/B" in str(c) for c in pr.call_args_list))
+
+    def test_series_numbering_chronological_and_link(self):
         with tempfile.TemporaryDirectory() as d:
             sync.generate_addon(self.CONFIG, self.results(), Path(d))
             meta = self.load(d, "meta/series/actorlists-series-vincent-lindon.json")["meta"]
@@ -245,33 +268,50 @@ class AddonTests(unittest.TestCase):
             self.assertEqual([v["id"] for v in meta["videos"]], ["tt5", "tt1", "tt2", "tt4"])
             self.assertEqual([(v["season"], v["episode"]) for v in meta["videos"]],
                              [(1, 1), (1, 2), (1, 3), (1, 4)])
+            self.assertEqual(meta["links"], [{
+                "name": "Voir en affiches", "category": "Filmographie",
+                "url": "stremio:///discover/https%3A%2F%2Fhichgss.github.io%2Factor-lists%2Fmanifest.json"
+                       "/movie/actorlists-films?genre=Vincent%20Lindon"}])
 
     def test_no_colon_in_filenames(self):
         with tempfile.TemporaryDirectory() as d:
             sync.generate_addon(self.CONFIG, self.results(), Path(d))
             files = [p for p in Path(d).rglob("*") if p.is_file()]
-            self.assertEqual(len(files), 8)
+            self.assertEqual(len(files), 7)
             self.assertFalse([p for p in files if ":" in p.name])
 
     def test_stale_cleanup_and_failed_actor_kept(self):
         with tempfile.TemporaryDirectory() as d:
-            sync.generate_addon(self.CONFIG, self.results(), Path(d))
-            stale = Path(d) / "meta/movie/actorlists-movie-old-actor.json"
-            stale.write_text("{}", encoding="utf-8")
-            other = Path(d) / "meta/movie/readme.json"
+            root = Path(d)
+            sync.generate_addon(self.CONFIG, self.results(), root)
+            (root / "meta/movie").mkdir(parents=True)
+            old_movie = root / "meta/movie/actorlists-movie-swann-arlaud.json"
+            old_movie.write_text("{}", encoding="utf-8")
+            old_cat = root / "catalog/movie/actorlists-movie.json"
+            old_cat.write_text("{}", encoding="utf-8")
+            other = root / "meta/movie/readme.json"
             other.write_text("{}", encoding="utf-8")
-            # Swann Arlaud en echec : son fichier est conserve et reste au catalogue
-            sync.generate_addon(self.CONFIG, self.results()[:1], Path(d))
-            self.assertFalse(stale.exists())
+            stale_series = root / "meta/series/actorlists-series-old-actor.json"
+            stale_series.write_text("{}", encoding="utf-8")
+            stale_genre = root / "catalog/movie/actorlists-films/genre=Old Actor.json"
+            stale_genre.write_text("{}", encoding="utf-8")
+            # Swann Arlaud en echec : ses fichiers sont conserves et il reste au catalogue
+            sync.generate_addon(self.CONFIG, self.results()[:1], root)
+            for f in (old_movie, old_cat, stale_series, stale_genre):
+                self.assertFalse(f.exists(), f)
             self.assertTrue(other.exists())
-            self.assertTrue((Path(d) / "meta/movie/actorlists-movie-swann-arlaud.json").exists())
-            cat = self.load(d, "catalog/movie/actorlists-movie.json")["metas"]
+            self.assertTrue((root / "meta/series/actorlists-series-swann-arlaud.json").exists())
+            self.assertTrue((root / "catalog/movie/actorlists-films/genre=Swann Arlaud.json").exists())
+            cat = self.load(d, "catalog/series/actorlists-series.json")["metas"]
             self.assertEqual(len(cat), 2)
+            self.assertNotIn("links", cat[1])
+            self.assertNotIn("videos", cat[1])
             # Acteur retire de la config : supprime
             sync.generate_addon({**self.CONFIG, "actors": self.CONFIG["actors"][:1]},
-                                self.results()[:1], Path(d))
-            self.assertFalse((Path(d) / "meta/movie/actorlists-movie-swann-arlaud.json").exists())
-            self.assertFalse((Path(d) / "meta/series/actorlists-series-swann-arlaud.json").exists())
+                                self.results()[:1], root)
+            self.assertFalse((root / "meta/series/actorlists-series-swann-arlaud.json").exists())
+            self.assertFalse((root / "catalog/movie/actorlists-films/genre=Swann Arlaud.json").exists())
+            self.assertTrue((root / "catalog/movie/actorlists-films/genre=Vincent Lindon.json").exists())
 
     def test_unchanged_not_rewritten_and_no_repo(self):
         with tempfile.TemporaryDirectory() as d:

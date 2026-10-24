@@ -16,6 +16,7 @@ import sys
 import time
 import unicodedata
 from pathlib import Path
+from urllib.parse import quote
 
 import requests
 
@@ -533,6 +534,7 @@ def write_output(slug: str, desired: list[dict]) -> None:
 # --------------------------------------------------------------------------
 ADDON_TYPES = ("movie", "series")
 TMDB_THUMB = "https://image.tmdb.org/t/p/w500"
+FILMS_CATALOG = "actorlists-films"
 
 
 def _json_bytes(obj) -> bytes:
@@ -570,21 +572,47 @@ def build_videos(desired: list[dict], kind: str) -> list[dict]:
     return videos
 
 
-def build_manifest(logo: str | None) -> dict:
+def addon_base_url(repo: str) -> str:
+    owner, _, name = repo.partition("/")
+    return f"https://{owner.lower()}.github.io/{name}/"
+
+
+BAD_FILENAME_CHARS = set('\\/:*?"<>|')
+
+
+def build_manifest(logo: str | None, actor_names: list[str] | None = None) -> dict:
     m = {
-        "id": "community.actorlists.hichgss", "version": "1.0.0", "name": "Acteurs",
+        "id": "community.actorlists.hichgss", "version": "1.1.0", "name": "Acteurs",
         "description": "Filmographies d'acteurs (mise a jour quotidienne)",
-        "resources": ["catalog", {"name": "meta", "types": list(ADDON_TYPES),
+        "resources": ["catalog", {"name": "meta", "types": ["series"],
                                   "idPrefixes": [ADDON_PREFIX]}],
         "types": list(ADDON_TYPES),
-        "catalogs": [{"type": "movie", "id": "actorlists-movie", "name": "Acteurs"},
-                     {"type": "series", "id": "actorlists-series", "name": "Acteurs (test serie)"}],
+        "catalogs": [
+            {"type": "series", "id": "actorlists-series", "name": "Acteurs"},
+            {"type": "movie", "id": "actorlists-films", "name": "Filmographies",
+             "extra": [{"name": "genre", "isRequired": True, "options": list(actor_names or [])}],
+             "extraSupported": ["genre"], "extraRequired": ["genre"]}],
         "idPrefixes": [ADDON_PREFIX],
         "behaviorHints": {"configurable": False, "configurationRequired": False},
     }
     if logo:
         m["logo"] = logo
     return m
+
+
+def build_poster_metas(desired: list[dict]) -> list[dict]:
+    """Metas film (grille d'affiches) : plus recent d'abord, sans date en premier, sans imdb ignores."""
+    metas = []
+    for d in sort_movies([d for d in desired if d.get("imdb")]):
+        m = {"id": d["imdb"], "type": "movie", "name": d.get("title") or "?"}
+        if d.get("poster_path"):
+            m["poster"] = f"{TMDB_THUMB}{d['poster_path']}"
+        if d.get("year"):
+            m["releaseInfo"] = d["year"]
+        if d.get("overview"):
+            m["description"] = d["overview"]
+        metas.append(m)
+    return metas
 
 
 def generate_addon(config: dict, results: list[dict], out_dir: Path = ADDON_DIR) -> list[str]:
@@ -599,56 +627,82 @@ def generate_addon(config: dict, results: list[dict], out_dir: Path = ADDON_DIR)
         if write_if_changed(out_dir / rel, data):
             written.append(rel)
 
+    base = addon_base_url(repo)
+    manifest_url = quote(base + "manifest.json", safe="")
     by_slug = {r["slug"]: r for r in results}
     ordered_slugs: list[str] = []
+    names: dict[str, str] = {}
     for a in config.get("actors") or []:
         if a.get("name"):
             sl = slugify(a["name"])
             if sl not in ordered_slugs:
                 ordered_slugs.append(sl)
+                names[sl] = a["name"]
     for r in results:  # acteurs sans nom dans la config
         if r["slug"] not in ordered_slugs:
             ordered_slugs.append(r["slug"])
+            names[r["slug"]] = r["name"]
 
-    catalogs: dict[str, list[dict]] = {k: [] for k in ADDON_TYPES}
+    kind = "series"
+    catalog: list[dict] = []
     logo = None
     for slug in ordered_slugs:
         poster, background = banner_urls(repo, slug)
         res = by_slug.get(slug)
-        for kind in ADDON_TYPES:
-            mid = f"{ADDON_PREFIX}{kind}-{slug}"
-            meta_rel = f"meta/{kind}/{mid}.json"
-            if res is None:  # echec ce jour-la : on garde l'existant
-                try:
-                    old = json.loads((out_dir / meta_rel).read_text(encoding="utf-8"))["meta"]
-                except (OSError, ValueError, KeyError):
-                    continue
-                catalogs[kind].append({k: v for k, v in old.items() if k != "videos"})
-                continue
+        mid = f"{ADDON_PREFIX}{kind}-{slug}"
+        meta_rel = f"meta/{kind}/{mid}.json"
+        if res is None:  # echec ce jour-la : on garde l'existant (meta et fichier genre)
+            try:
+                old = json.loads((out_dir / meta_rel).read_text(encoding="utf-8"))["meta"]
+            except (OSError, ValueError, KeyError):
+                old = None
+            if old is not None:
+                catalog.append({k: v for k, v in old.items() if k not in ("videos", "links")})
+        else:
             videos = build_videos(res["desired"], kind)
             meta = {"id": mid, "type": kind, "name": res["name"], "poster": poster,
                     "posterShape": "poster", "background": background,
                     "description": f"Filmographie de {res['name']} ({len(videos)} films)"}
-            catalogs[kind].append(dict(meta))
+            catalog.append(dict(meta))
+            link = (f"stremio:///discover/{manifest_url}/movie/{FILMS_CATALOG}"
+                    f"?genre={quote(names[slug])}")
+            meta["links"] = [{"name": "Voir en affiches", "category": "Filmographie", "url": link}]
             put(meta_rel, _json_bytes({"meta": {**meta, "videos": videos}}))
+            gname = names[slug]
+            if BAD_FILENAME_CHARS & set(gname):
+                print(f"  ! nom d'acteur '{gname}' inutilisable comme nom de fichier : "
+                      "catalogue Filmographies ignore pour cet acteur.")
+            else:
+                put(f"catalog/movie/{FILMS_CATALOG}/genre={gname}.json",
+                    _json_bytes({"metas": build_poster_metas(res["desired"])}))
         if logo is None:
             logo = poster
 
-    put("manifest.json", _json_bytes(build_manifest(logo)))
-    for kind in ADDON_TYPES:
-        put(f"catalog/{kind}/{ADDON_PREFIX}{kind}.json", _json_bytes({"metas": catalogs[kind]}))
+    put("manifest.json", _json_bytes(build_manifest(logo, [names[s] for s in ordered_slugs])))
+    put(f"catalog/series/{ADDON_PREFIX}series.json", _json_bytes({"metas": catalog}))
     if not (out_dir / ".nojekyll").exists():
         put(".nojekyll", b"")
 
-    # Nettoyage : metas d'acteurs qui ne sont plus dans la config
+    # Nettoyage : metas d'acteurs retires de la config, variante film abandonnee, genres obsoletes
     keep = set(ordered_slugs)
     removed = []
-    for kind in ADDON_TYPES:
-        prefix = f"{ADDON_PREFIX}{kind}-"
-        for f in (out_dir / "meta" / kind).glob(f"{prefix}*.json"):
-            if f.name[len(prefix):-len(".json")] not in keep:
-                f.unlink()
-                removed.append(f"meta/{kind}/{f.name}")
+    prefix = f"{ADDON_PREFIX}series-"
+    for f in (out_dir / "meta" / "series").glob(f"{prefix}*.json"):
+        if f.name[len(prefix):-len(".json")] not in keep:
+            f.unlink()
+            removed.append(f"meta/series/{f.name}")
+    for f in (out_dir / "meta" / "movie").glob(f"{ADDON_PREFIX}*.json"):
+        f.unlink()
+        removed.append(f"meta/movie/{f.name}")
+    old_cat = out_dir / "catalog" / "movie" / f"{ADDON_PREFIX}movie.json"
+    if old_cat.exists():
+        old_cat.unlink()
+        removed.append(f"catalog/movie/{old_cat.name}")
+    wanted = {f"genre={n}.json" for n in names.values()}
+    for f in (out_dir / "catalog" / "movie" / FILMS_CATALOG).glob("genre=*.json"):
+        if f.name not in wanted:
+            f.unlink()
+            removed.append(f"catalog/movie/{FILMS_CATALOG}/{f.name}")
     print(f"  Addon : {len(written)} fichier(s) ecrit(s), {len(removed)} supprime(s).")
     for rel in written:
         print(f"    + docs/{rel}")
