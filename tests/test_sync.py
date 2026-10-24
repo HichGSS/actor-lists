@@ -277,8 +277,17 @@ class AddonTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             sync.generate_addon(self.CONFIG, self.results(), Path(d))
             files = [p for p in Path(d).rglob("*") if p.is_file()]
-            self.assertEqual(len(files), 7)
+            self.assertEqual(len(files), 8)
             self.assertFalse([p for p in files if ":" in p.name])
+
+    def test_copy_page_lists_banner_urls(self):
+        with tempfile.TemporaryDirectory() as d:
+            sync.generate_addon(self.CONFIG, self.results(), Path(d))
+            page = (Path(d) / "index.html").read_text(encoding="utf-8")
+            for slug in {r["slug"] for r in self.results()}:
+                poster, landscape = sync.banner_urls(self.CONFIG["github_repo"], slug)
+                self.assertIn(f'data-u="{poster}"', page)
+                self.assertIn(f'data-u="{landscape}"', page)
 
     def test_stale_cleanup_and_failed_actor_kept(self):
         with tempfile.TemporaryDirectory() as d:

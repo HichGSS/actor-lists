@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import html
 import io
 import json
 import os
@@ -615,6 +616,31 @@ def build_poster_metas(desired: list[dict]) -> list[dict]:
     return metas
 
 
+def build_copy_page(repo: str, actors: list[tuple[str, str]]) -> bytes:
+    """Page web (GitHub Pages) pour copier les URLs des bannieres depuis l'iPad."""
+    rows = []
+    for name, slug in actors:
+        for label, url in zip(("Poster", "Paysage"), banner_urls(repo, slug)):
+            u = html.escape(url, quote=True)
+            rows.append(f'<div class="c"><img src="{u}" loading="lazy" alt="">'
+                        f'<b>{html.escape(name)} – {label}</b>'
+                        f'<button data-u="{u}">Copier</button></div>')
+    page = f"""<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Bannieres acteurs</title>
+<style>body{{font-family:-apple-system,sans-serif;background:#111;color:#eee;margin:16px}}
+.g{{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}}
+.c{{background:#222;border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:6px}}
+img{{width:100%;border-radius:6px}}button{{font-size:16px;padding:10px;border:0;border-radius:8px;background:#3a7afe;color:#fff}}
+button.ok{{background:#2a9d4b}}</style></head><body><h1>Bannières acteurs</h1>
+<p>Addon : <code>{html.escape(addon_base_url(repo))}manifest.json</code></p><div class="g">
+{chr(10).join(rows)}
+</div><script>document.querySelectorAll('button').forEach(b=>b.onclick=async()=>{{
+try{{await navigator.clipboard.writeText(b.dataset.u);b.textContent='Copié ✓';b.className='ok'}}
+catch(e){{prompt('Copie cette URL :',b.dataset.u)}}}});</script></body></html>
+"""
+    return page.encode("utf-8")
+
+
 def generate_addon(config: dict, results: list[dict], out_dir: Path = ADDON_DIR) -> list[str]:
     """Genere l'addon dans out_dir ; retourne les chemins (relatifs) reellement ecrits."""
     repo = (config.get("github_repo") or "").strip()
@@ -680,6 +706,7 @@ def generate_addon(config: dict, results: list[dict], out_dir: Path = ADDON_DIR)
 
     put("manifest.json", _json_bytes(build_manifest(logo, [names[s] for s in ordered_slugs])))
     put(f"catalog/series/{ADDON_PREFIX}series.json", _json_bytes({"metas": catalog}))
+    put("index.html", build_copy_page(repo, [(names[s], s) for s in ordered_slugs]))
     if not (out_dir / ".nojekyll").exists():
         put(".nojekyll", b"")
 

@@ -1,0 +1,15 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Bannieres acteurs</title>
+<style>body{font-family:-apple-system,sans-serif;background:#111;color:#eee;margin:16px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.c{background:#222;border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:6px}
+img{width:100%;border-radius:6px}button{font-size:16px;padding:10px;border:0;border-radius:8px;background:#3a7afe;color:#fff}
+button.ok{background:#2a9d4b}</style></head><body><h1>Bannières acteurs</h1>
+<p>Addon : <code>https://hichgss.github.io/actor-lists/manifest.json</code></p><div class="g">
+<div class="c"><img src="https://raw.githubusercontent.com/HichGSS/actor-lists/main/banners/swann-arlaud_poster.jpg" loading="lazy" alt=""><b>Swann Arlaud – Poster</b><button data-u="https://raw.githubusercontent.com/HichGSS/actor-lists/main/banners/swann-arlaud_poster.jpg">Copier</button></div>
+<div class="c"><img src="https://raw.githubusercontent.com/HichGSS/actor-lists/main/banners/swann-arlaud.jpg" loading="lazy" alt=""><b>Swann Arlaud – Paysage</b><button data-u="https://raw.githubusercontent.com/HichGSS/actor-lists/main/banners/swann-arlaud.jpg">Copier</button></div>
+<div class="c"><img src="https://raw.githubusercontent.com/HichGSS/actor-lists/main/banners/vincent-lindon_poster.jpg" loading="lazy" alt=""><b>Vincent Lindon – Poster</b><button data-u="https://raw.githubusercontent.com/HichGSS/actor-lists/main/banners/vincent-lindon_poster.jpg">Copier</button></div>
+<div class="c"><img src="https://raw.githubusercontent.com/HichGSS/actor-lists/main/banners/vincent-lindon.jpg" loading="lazy" alt=""><b>Vincent Lindon – Paysage</b><button data-u="https://raw.githubusercontent.com/HichGSS/actor-lists/main/banners/vincent-lindon.jpg">Copier</button></div>
+</div><script>document.querySelectorAll('button').forEach(b=>b.onclick=async()=>{
+try{await navigator.clipboard.writeText(b.dataset.u);b.textContent='Copié ✓';b.className='ok'}
+catch(e){prompt('Copie cette URL :',b.dataset.u)}});</script></body></html>
