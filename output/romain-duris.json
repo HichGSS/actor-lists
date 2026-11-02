@@ -1,5 +1,15 @@
 [
   {
+    "title": "The Phantom of the Opera",
+    "year": "2026",
+    "tmdb": 1430841,
+    "imdb": "tt37740990",
+    "release_date": "2026-10-28",
+    "poster_path": "/2aU9dLDES0IdxB4sGYeeoJ7DOjA.jpg",
+    "backdrop_path": "/5zDqy29V1nuwZiSq60hYaQQcOu1.jpg",
+    "overview": "Anastasia, an 18-year-old ballet dancer at the Opéra Garnier, becomes the obsession of a disfigured man living in the opera's underground labyrinth."
+  },
+  {
     "title": "Nobody's Son",
     "year": "2026",
     "tmdb": 1309406,
@@ -418,6 +428,16 @@
     "poster_path": "/xkjbhh23bAciuG5UYkDhErYyhwU.jpg",
     "backdrop_path": "/hhRZ17QrpAvFz92Xr9jxAmEARCY.jpg",
     "overview": "Three sons are sent on a journey to trace their father's checkered past."
+  },
+  {
+    "title": "Adolphe",
+    "year": "2002",
+    "tmdb": 18456,
+    "imdb": "tt0307923",
+    "release_date": "2002-10-30",
+    "poster_path": "/41XzIXarANVVwZvOVAnFhhvNTzD.jpg",
+    "backdrop_path": "/nTWySNSyLuiE5BQZUZggwEmPsvf.jpg",
+    "overview": "Twenty-year old Adolphe finds himself drawn irresistibly to Ellénore, a married woman who is ten years his senior. Although she initially repels her young suitor’s unwanted advances, Ellénore soon yields to his charms and the two embark on a passionate love affair."
   },
   {
     "title": "17 fois Cécile Cassard",
