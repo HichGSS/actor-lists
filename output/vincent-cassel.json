@@ -1,5 +1,15 @@
 [
   {
+    "title": "Sacrifice",
+    "year": "2026",
+    "tmdb": 1284186,
+    "imdb": "tt32268992",
+    "release_date": "2026-08-12",
+    "poster_path": "/aq09lGYP1rK0tzse4dJRvYK87od.jpg",
+    "backdrop_path": "/uBRVzvMlNlKsegUCDXIwP7W6Ygb.jpg",
+    "overview": "At a glitzy Greek island charity gala, a down-on-his-luck movie star lands the heroic role of a lifetime when a volcanic doomsday cult takes him hostage."
+  },
+  {
     "title": "Parallel Tales",
     "year": "2026",
     "tmdb": 1157869,
@@ -8,16 +18,6 @@
     "poster_path": "/eK7CmUQm6cIP8kOekSW0n4a37Am.jpg",
     "backdrop_path": "/mJxnzi4GNQ5i9HGLcTwyrqCEKkl.jpg",
     "overview": "In search of inspiration for her new novel, Sylvie spies on her neighbors in the building across the street using a telescope. When she hires young Adam to help her with her daily routine, she has no idea that he will turn her life and her work upside down, until the fiction she had imagined surpasses the reality of them all."
-  },
-  {
-    "title": "Sacrifice",
-    "year": "2026",
-    "tmdb": 1284186,
-    "imdb": "tt32268992",
-    "release_date": "2026-04-09",
-    "poster_path": "/aq09lGYP1rK0tzse4dJRvYK87od.jpg",
-    "backdrop_path": "/uBRVzvMlNlKsegUCDXIwP7W6Ygb.jpg",
-    "overview": "At a glitzy Greek island charity gala, a down-on-his-luck movie star lands the heroic role of a lifetime when a volcanic doomsday cult takes him hostage."
   },
   {
     "title": "The Shrouds",
@@ -496,7 +496,7 @@
     "imdb": "tt0126029",
     "release_date": "2001-05-18",
     "poster_path": "/iB64vpL3dIObOtMZgX3RqdVdQDc.jpg",
-    "backdrop_path": "/sRvXNDItGlWCqtO3j6wks52FmbD.jpg",
+    "backdrop_path": "/2Biv1mSzaaxWOqvcnDZn4GcYEAb.jpg",
     "overview": "It ain't easy bein' green -- especially if you're a likable (albeit smelly) ogre named Shrek. On a mission to retrieve a gorgeous princess from the clutches of a fire-breathing dragon, Shrek teams up with an unlikely compatriot -- a wisecracking donkey."
   },
   {
